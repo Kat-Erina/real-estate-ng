@@ -1,1 +1,95 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    border-bottom: 1px solid #DBDBDB;
+    height:100px;
+ display: flex;
+ align-items: center;
+}
+header img{
+    margin-left: 162px;}
+    .listings-navigation-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+       
+        
+    }
+    main{
+        width: 100%;
+        padding: 50px 162px;
+    }
+    .filter-lists{
+        padding: 10px;
+       display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: space-between;
+        border: 1px solid #DBDBDB;
+        border-radius: 10px;
+        
+       
+    
+    }
+   
+    .filter-item i{
+        font-size: 10px;
+    }
+    .filter-item p{
+       font-size: 20px;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .filter-item p:hover{
+        background-color:#DBDBDB; 
+    }
+
+    .filter-options{
+        width: 50%;
+    }
+
+    .add-btns-container{
+        height: 70px;
+        
+    }
+  .add-listing-btn, .add-agent-btn {
+    font-size: 22px;
+    
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: bold;
+    border: none;
+   }
+   .add-listing-btn{
+    background-color: #F93B1D;
+    color: white;
+    margin-right: 20px;
+    
+   }
+   .add-agent-btn{
+    color: #F93B1D;
+    background-color: #fff;
+    border: 2px solid #F93B1D ;
+   }
+   
+   .chosen-fileters-container{
+    margin-top: 20px;
+    z-index: 0;
+   }
+
+   .region-form{
+    height: 300px;
+    background-color: yellow;
+    margin-top: -40px;
+    z-index: 1;
+   }
+
+
+
+
