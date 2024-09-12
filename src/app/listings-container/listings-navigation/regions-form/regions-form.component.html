@@ -1,1 +1,9 @@
-<div class="region-form"><p>region-form works!</p></div>
+<section class="region-form">
+    <p>რეგიონის მიხედვით</p>
+<form class="regions-selection-form">
+    @for(region of regions(); track region.id){
+        <app-region-checkbox [region]="region"></app-region-checkbox>
+    }
+</form>
+<button class="select-region-btn">არჩევა</button>
+</section>
