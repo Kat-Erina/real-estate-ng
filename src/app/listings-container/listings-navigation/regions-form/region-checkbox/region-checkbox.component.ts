@@ -13,22 +13,5 @@ export class RegionCheckboxComponent {
   @Input() region!:RegionObject;
   service=inject(ListingFilterService);
   selectedRegionsarray=this.service.selectedRegionsarray;
-
-  selectedRegionValue='';
-  isChecked=false;
-
-toggle(el:any){
-  let value=el.target.value;
-  console.log(value)
-  if(!this.selectedRegionsarray.includes(value)){
-    this.selectedRegionsarray.push(value);
-    console.log(this.selectedRegionsarray)
-} else {
- this.selectedRegionsarray=this.selectedRegionsarray.filter((el)=>{return value!=el});
-  console.log(this.selectedRegionsarray)
-}
-}
-
-handleSubmit(){}
-
+    isChecked=false;
 }

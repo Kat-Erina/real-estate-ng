@@ -1,0 +1,37 @@
+<section class="prices-form">
+    <p>ფასის მიხედვით</p>
+<form class="prices-selection-form">
+    <div class="price-inputs-container">
+        <label for="min-price"></label>
+      <div class="input-container input-container-1"><input id=
+        "0"[value]="minPriceInput" type="text" name="min-price" class="price-input price-input-1" placeholder="დან">
+    <span>₾</span>
+</div>
+        <label for="max-price" ></label>
+       <div class="input-container"><input id="1" [value]="maxPriceInput" type="text" name="max-price" class="price-input" placeholder="მდე"><span>₾</span></div> 
+       
+    </div>
+    <div class="price-options">
+        <div class="price-option-first">
+            <p>მინ. ფასი</p>
+            <ul class="min-price-list">
+                @for(price of minimumPricesArray; track price){
+                    <app-minimum-item (click)="handleClickeventLeft($event)" [price]="price"></app-minimum-item>
+                }
+               
+        </ul>
+        </div>
+        <div class="price-option-second">
+            <ul class="max-price-list">
+                <p>მაქს. ფასი</p>
+                @for(price of maximumPricesArray; track price){
+                    <app-maximum-item [price]="price" (click)="handleClickeventRight($event)"></app-maximum-item>
+                }
+               
+        </ul>
+        </div>
+             </div>
+   
+</form>
+<button (click)="handlePricesSubmission($event,'price_range',selectedPricesarray)" class="select-region-btn">არჩევა</button>
+</section>

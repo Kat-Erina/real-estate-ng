@@ -1,14 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FilteresContainerComponent } from './filteres-container/filteres-container.component';
 import { RegionsFormComponent } from './regions-form/regions-form.component';
+import { CommonModule } from '@angular/common';
+import { ListingFilterService } from '../../listing.filter.service';
+import { PriceComponentComponent } from './price-component/price-component.component';
+import { AreaContainerComponent } from './area-container/area-container.component';
+import { BedroomFilterComponentComponent } from './bedroom-filter-component/bedroom-filter-component.component';
 
 @Component({
   selector: 'app-listings-navigation',
   standalone: true,
-  imports: [FilteresContainerComponent, RegionsFormComponent],
+  imports: [FilteresContainerComponent, RegionsFormComponent, CommonModule, PriceComponentComponent, AreaContainerComponent, BedroomFilterComponentComponent],
   templateUrl: './listings-navigation.component.html',
   styleUrl: './listings-navigation.component.css'
 })
 export class ListingsNavigationComponent {
+
+ listingFilterService=inject(ListingFilterService);
+ stateObject=this.listingFilterService.stateObject;
+ chosenField=this.listingFilterService.chosenField
+ toggle=this.listingFilterService.toggle
 
 }

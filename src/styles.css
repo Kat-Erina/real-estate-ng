@@ -83,13 +83,130 @@ header img{
     z-index: 0;
    }
 
-   .region-form{
-    height: 300px;
-    background-color: yellow;
+   .region-form, .prices-form, .area-form, .bedroom-form{
+    
+    width: 40%;
+   background-color: #fff;
     margin-top: -40px;
     z-index: 1;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #DBDBDB;
+    border-radius: 10px;
    }
 
+  
+   .regions-selection-form{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(4, auto);
+    gap: 10px;
 
+}
+.region-form p, .prices-form p, .area-form p, .bedroom-form p{
+    font-weight: bold;
+    margin-bottom: 20px;
+    border:1px solid red
+}
+.checkbox{
+   margin-right: 10px;
+   transform: scale(1.5);
+  accent-color: green;
+
+
+}
+.checkbox:checked{
+    background-color: #F93B1D;
+}
+.select-region-btn, .select-area-btn, .select-bedroom-btn{
+    margin-top: 20px;
+    width: 77px;
+    height: 33px;
+    float: right;
+    background-color: #F93B1D;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    align-self: flex-end
+}
+.prices-form{
+    width: 20%;
+    left: 16%;
+    padding: 24px;
+}
+.area-form{
+    width: 20%;
+    left: 28%;
+    padding: 24px;
+}
+.bedroom-form{width: 15%;
+left: 35%;
+padding: 24px;
+}
+
+
+.price-inputs-container, .area-inputs-container{
+    width: 100%;
+  display: flex;
+    flex-direction: row; 
+    
+    }
+
+.input-container{
+    width: 50%;
+    height: 42px;
+    border: 1px solid #808A93;;
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+
+.price-input, .area-input{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: none;
+    outline: none
+   
+}
+.bedroom-input{
+    border: 1px solid #808A93;
+    border-radius: 6px;
+    width:40px;
+    height: 42px;
+    padding: 15px;
+}
+.input-container-1{
+    margin-right: 17px;
+}
+.price-options, .area-options{
+    
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 24px;
+    border: 1px solid blue;
+    
+}
+.price-option-first ul, .price-option-second ul, .area-option-first ul, .area-option-second ul{
+    list-style: none;
+    
+   
+}
+ 
+.price-option-first ul li, .price-option-second ul li, .area-option-first ul li, .area-option-second ul li{
+    padding-top: 10px;
+    color: #2D3648;
+    }
+
+.price-option-first, .price-option-second, .area-option-first, .area-option-second{
+    border: 1px solid red;
+    width: 50%;
+}
 
 

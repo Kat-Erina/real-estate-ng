@@ -1,0 +1,7 @@
+<section class="bedroom-form">
+    <p>საძინებლების რაოდენონდა</p>
+<form class="bedroom-selection-form">
+   <input type="text"  class="bedroom-input" [value]="selectedBedroom" #bedroom (input)="onChange($event)">
+    </form>
+<button class="select-bedroom-btn" (click)="handleBedroomSelection($event)">არჩევა</button>
+</section>

@@ -1,15 +1,15 @@
 <section class="listings-navigation-container">
     <div class="filter-options">
         <ul class="filter-lists">
-        <li class="filter-item">
-            <p>რეგიონი <i class="fa-solid fa-chevron-down"></i>
+        <li class="filter-item" (click)="toggle('region')">
+            <p>რეგიონი <i class="fa-solid" [ngClass]="{'fa-chevron-down' :!stateObject['region'], 'fa-chevron-up': stateObject['region']}"></i>
             </p>
             </li>
-    <li class="filter-item"> <p>საფასო კატეგორია <i class="fa-solid fa-chevron-down"></i></p>
+    <li class="filter-item" (click)="toggle('prices')"> <p>საფასო კატეგორია <i class="fa-solid" [ngClass]="{'fa-chevron-down' :!stateObject['prices'], 'fa-chevron-up': stateObject['prices']}"></i></p>
       </li>
-    <li class="filter-item"> <p>ფართობი <i class="fa-solid fa-chevron-down"></i></p>
+    <li class="filter-item" (click)="toggle('area')"> <p>ფართობი <i class="fa-solid" [ngClass]="{'fa-chevron-down' :!stateObject['area'], 'fa-chevron-up': stateObject['area']}"></i></p>
         </li>
-    <li class="filter-item"> <p>საძინებლების რაოდენობა <i class="fa-solid fa-chevron-down"></i></p>
+    <li class="filter-item" (click)="toggle('bedroom')"> <p>საძინებლების რაოდენობა <i class="fa-solid" [ngClass]="{'fa-chevron-down' :!stateObject['bedroom'], 'fa-chevron-up': stateObject['bedroom']}"></i></p>
        </li>
     </ul>
    </div>
@@ -19,5 +19,9 @@
     </div>
    </section>
    <app-filteres-container></app-filteres-container>
-   <app-regions-form></app-regions-form>
+   @if(chosenField==='region'){<app-regions-form></app-regions-form>}
+   @if(chosenField==='prices'){<app-price-component></app-price-component>}
+   @if(chosenField==='area'){<app-area-container></app-area-container>}
+   @if(chosenField==='bedroom'){<app-bedroom-filter-component></app-bedroom-filter-component>}
+   
    
