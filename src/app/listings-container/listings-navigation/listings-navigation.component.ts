@@ -6,11 +6,12 @@ import { ListingFilterService } from '../../listing.filter.service';
 import { PriceComponentComponent } from './price-component/price-component.component';
 import { AreaContainerComponent } from './area-container/area-container.component';
 import { BedroomFilterComponentComponent } from './bedroom-filter-component/bedroom-filter-component.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-listings-navigation',
   standalone: true,
-  imports: [FilteresContainerComponent, RegionsFormComponent, CommonModule, PriceComponentComponent, AreaContainerComponent, BedroomFilterComponentComponent],
+  imports: [FilteresContainerComponent, RegionsFormComponent, CommonModule, PriceComponentComponent, AreaContainerComponent, BedroomFilterComponentComponent, RouterLink],
   templateUrl: './listings-navigation.component.html',
   styleUrl: './listings-navigation.component.css'
 })

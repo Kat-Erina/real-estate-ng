@@ -1,0 +1,19 @@
+.filters-container{
+   height: 50px;
+   border:1px solid red;
+   
+   
+}
+.filters-container ul{
+    display: flex;
+    /* grid-template-rows: repeat(auto-fill, minmax(0, 1fr)); */
+    gap: 10px;
+    list-style: none;
+}
+.item{
+
+    padding: 10px;
+align-items: center;
+border: 1px solid #DBDBDB;
+border-radius: 15px;
+}

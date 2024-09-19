@@ -1,13 +1,13 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable, signal } from "@angular/core";
+import { inject, Injectable, Signal, signal, WritableSignal } from "@angular/core";
 import { RegionObject } from "./types";
 import { FiletersObject } from "./types";
 
 @Injectable({'providedIn':"root"})
 export class ListingFilterService{
-    chosenField?:string
+    chosenField=signal("")
     httpRequest=inject(HttpClient);
-    selectedRegionsarray:string[]=[];
+    selectedRegionsarray=signal<string[]>([])
 
     stateObject:{[key:string]:boolean}= {
         region:false,
@@ -15,113 +15,80 @@ export class ListingFilterService{
         area:false,
         bedroom:false
        }
-       savedFilteresObj!:FiletersObject
-
-minPriceInput=' '
-maxPriceInput=' '
-minAreaInput=' '
-maxAreaInput=' '
-selectedPricesarray:string[]=[this.minPriceInput, this.maxPriceInput]
-selectedAreaArrays:string[]=[this.minAreaInput, this.maxAreaInput];
-
-selectedBedroom=""
 
 
+minPriceInput=signal(' ')
+maxPriceInput=signal(' ')
+minAreaInput=signal(' ')
+maxAreaInput=signal(' ')
+selectedPricesarray=signal<string[]>([])
+selectedAreaArrays=signal<string[]>([])
+selectedBedroom=signal<string>('')
+allowToClear=signal<boolean>(false)
 
-       toggle(target:string){
-        this.chosenField=target
+
+toggle(target:string){
+        this.chosenField.set(target)
         let allkeys=Object.keys(this.stateObject);
         allkeys.forEach((el)=>{
         if(el===target){
             if(this.stateObject[el]){
-                this.chosenField="";
+                this.chosenField.set("")
             }
             this.stateObject[target]=!this.stateObject[target];
         }else if(this.stateObject[el])  {this.stateObject[el]=!this.stateObject[el]}
     })
-                return this.chosenField
+                return this.chosenField()
       }
 
-      handleSubmit() {
+      fetcheRegionsData() {
         return  this.httpRequest.get<RegionObject[]>('https://api.real-estate-manager.redberryinternship.ge/api/regions')
 }
 
-handleClickeventLeft(e:Event){
+
+handleClickeventLeft(e:Event,minInput:WritableSignal<string>, array:WritableSignal<string[]>, maxInput:WritableSignal<string> ){
    const target=e.target as HTMLElement;
     let content=target.textContent;
-    if(content!=null){
-           this.minPriceInput=content;
-           this.selectedPricesarray[0]=content}
-}
+   if(content!=null){
+            minInput.set(content);
+           array.set([content, maxInput()])
+           }
+    }
 
-handleClickeventLeftArea(e:Event){
-    const target=e.target as HTMLElement;
-     let content=target.textContent;
-    if(content!=null){
-            this.minAreaInput=content;
-           this.selectedAreaArrays[0]=content}
- }
 
-handleClickeventRight(e:Event){
+handleClickeventRight(e:Event, maxInput:WritableSignal<string>, array:WritableSignal<string[]>, minInput:WritableSignal<string>){
     const target=e.target as HTMLElement;
      let content=target.textContent;
      if(content!=null){
-            this.maxPriceInput=content;
-            this.selectedPricesarray[1]=content
+        maxInput.set(content);
+            array.set([minInput(), content])
         }
  }
 
- handleClickeventRightArea(e:Event){
-   const target=e.target as HTMLElement;
-     let content=target.textContent;
-    if(content!=null){
-            this.maxAreaInput=content;
-            this.selectedAreaArrays[1]=content
-        }
- }
 
-updateFiltersObjectstorage(field:string, array:string[]){
-    if(this.minPriceInput===" " || this.maxPriceInput === " ")
-        window.alert("გთხოვთ მიუთითოთ ფასები")
-    else{ let obj=window.localStorage.getItem('savedObject');
-        if(obj){
-            let fetchedObj= JSON.parse(obj);
-            let updatedObj={...fetchedObj, [field]:array}
-      window.localStorage.setItem('savedObject',JSON.stringify(updatedObj))
-    }
-    else {
-        let updatedObj={...this.savedFilteresObj, [field]:array}
-          window.localStorage.setItem('savedObject',JSON.stringify(updatedObj))
-    }}
+updateFiltersObjectstorage(field:string, array:string[]|string){
+    let updatedObj={regions:[],
+            price_range:[],
+            area:[],
+            bedroom:""}
 
-}
-
-updateFiltersWithAreaObjectstorage(field:string, array:string[]){
-    if(this.minAreaInput===" " || this.maxAreaInput === " ")
-        window.alert("გთხოვთ მიუთითოთ ფართობი")
-    else{ let obj=window.localStorage.getItem('savedObject');
-        if(obj){
-            let fetchedObj= JSON.parse(obj);
-            let updatedObj={...fetchedObj, [field]:array}
-      window.localStorage.setItem('savedObject',JSON.stringify(updatedObj))
-    }
-    else {
-        let updatedObj={...this.savedFilteresObj, [field]:array}
-          window.localStorage.setItem('savedObject',JSON.stringify(updatedObj))
-    }}
-
-}
-
-updateFilterObjectWithBedroom(field:string, selectedBedroomAmount:string){
     let obj=window.localStorage.getItem('savedObject');
         if(obj){
-            let fetchedObj= JSON.parse(obj);
-            let updatedObj={...fetchedObj, [field]:selectedBedroomAmount}
-      window.localStorage.setItem('savedObject',JSON.stringify(updatedObj))
+            let fetchedObj= JSON.parse(obj)
+            updatedObj={...fetchedObj, [field]:array}
+         window.localStorage.setItem('savedObject',JSON.stringify(updatedObj))
     }
     else {
-        let updatedObj={...this.savedFilteresObj, [field]:selectedBedroomAmount}
-          window.localStorage.setItem('savedObject',JSON.stringify(updatedObj))
+        updatedObj={...updatedObj, [field]:array};
+        window.localStorage.setItem('savedObject',JSON.stringify(updatedObj))
     }
+this.allowToClear.set(true)
+console.log(this.allowToClear())
+this.chosenField.set("");
+console.log(this.chosenField())
 }
+
+
+
+
 }

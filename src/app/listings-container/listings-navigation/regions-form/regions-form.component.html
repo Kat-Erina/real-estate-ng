@@ -5,6 +5,6 @@
         <app-region-checkbox [region]="region" (change)="toggle($event)"></app-region-checkbox>
     }
 </form>
-<button  (click)="handleRegionSubmit($event, 'regions', selectedRegionsarray)" class="select-region-btn">არჩევა</button>
+<button  (click)="handleRegionSubmit($event, 'regions', selectedRegionsarray())" class="select-region-btn">არჩევა</button>
 
 </section>

@@ -4,8 +4,8 @@ export interface RegionObject{
   }
 
   export interface FiletersObject{
-    
-      regions:string,
+   
+      regions:string[],
       price_range:string[],
       area:string[],
       bedroom:""

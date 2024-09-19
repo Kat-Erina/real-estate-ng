@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { minimumPricesArray, maximumPricesArray } from '../data-array';
 import { ListingFilterService } from '../../../listing.filter.service';
 import { MinimumItemComponent } from './minimum-item/minimum-item.component';
@@ -9,10 +9,12 @@ import { MaximumItemComponent } from './maximum-item/maximum-item.component';
   standalone: true,
   imports: [MinimumItemComponent, MaximumItemComponent],
   templateUrl: './price-component.component.html',
-  styleUrl: './price-component.component.css'
+  styleUrl: './price-component.component.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class PriceComponentComponent{
 service=inject(ListingFilterService);
+chosenField=this.service.chosenField
 minimumPricesArray=minimumPricesArray;
 maximumPricesArray=maximumPricesArray;
 
@@ -20,19 +22,26 @@ minPriceInput=this.service.minPriceInput
 maxPriceInput=this.service.maxPriceInput;
 selectedPricesarray=this.service.selectedPricesarray;
 
+
 handleClickeventLeft=this.service.handleClickeventLeft;
 handleClickeventRight=this.service.handleClickeventRight;
-updateFiltersObjectstorage=this.service.updateFiltersObjectstorage
+updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
+allowToClear=this.service.allowToClear
 
 
 handlePricesSubmission(event:Event, field:string, array:string[]){
   event.preventDefault();
-  if(Number(this.minPriceInput.replace(",", ""))>=Number(this.maxPriceInput.replace(",", ""))){
+  if(this.minPriceInput()===" " || this.maxPriceInput() === " ")
+       { window.alert("გთხოვთ მიუთითოთ ფასები")}
+  
+
+  else if(Number(this.minPriceInput().replace(",", ""))>=Number(this.maxPriceInput().replace(",", ""))){
       window.alert("მინიმალური ფასი არ შეიძლება იყოს მაქსიმალურ ფასზე მეტი, გთხოვთ შეასწორეთ!");
       return
   } else {
 
      this.updateFiltersObjectstorage(field, array)
+    
   }
 }
 

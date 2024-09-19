@@ -14,14 +14,14 @@
     </ul>
    </div>
     <div class="add-btns-container">
-        <button class="add-listing-btn">+ ლისტინგის დამატება</button>
+        <button class="add-listing-btn" [routerLink]="'listing-modal'" >+ ლისტინგის დამატება</button>
         <button class="add-agent-btn">+ აგენტის დამატება</button>
     </div>
    </section>
    <app-filteres-container></app-filteres-container>
-   @if(chosenField==='region'){<app-regions-form></app-regions-form>}
-   @if(chosenField==='prices'){<app-price-component></app-price-component>}
-   @if(chosenField==='area'){<app-area-container></app-area-container>}
-   @if(chosenField==='bedroom'){<app-bedroom-filter-component></app-bedroom-filter-component>}
+   @if(chosenField()==='region'){<app-regions-form></app-regions-form>}
+   @if(chosenField()==='prices'){<app-price-component></app-price-component>}
+   @if(chosenField()==='area'){<app-area-container></app-area-container>}
+   @if(chosenField()==='bedroom'){<app-bedroom-filter-component></app-bedroom-filter-component>}
    
    
