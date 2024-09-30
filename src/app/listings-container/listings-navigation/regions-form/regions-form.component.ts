@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { RegionCheckboxComponent } from './region-checkbox/region-checkbox.component';
 import { RegionObject } from '../../../types';
 import { ListingFilterService } from '../../../listing.filter.service';
 import { CommonModule } from '@angular/common';
+import { Service } from '../../../services.service';
 
 
 @Component({
@@ -14,7 +15,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './regions-form.component.css'
 })
 export class RegionsFormComponent implements OnInit {
-service=inject(ListingFilterService)
+service=inject(ListingFilterService);
+dataFetchService=inject(Service)
 destroyRef=inject(DestroyRef);
 chosenField=this.service.chosenField
 regions=signal<RegionObject []>([]);
@@ -26,7 +28,7 @@ maxPriceInput=this.service.maxPriceInput
 
 
 ngOnInit(): void {
- let subscription= this.service.fetcheRegionsData().subscribe(
+ let subscription= this.dataFetchService.fetchData('regions').subscribe(
     {next:(response)=>{console.log(response);
       this.regions.set(response)
     }})

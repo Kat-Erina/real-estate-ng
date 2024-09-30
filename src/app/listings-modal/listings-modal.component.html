@@ -1,3 +1,71 @@
 <section class="listings-container">
-    <p>It is working</p>
+    <form [formGroup]="form">
+        <h2>ლისტინგის დამატება</h2>
+        <div class="type">
+            <p >
+                გარიგების ტიპი
+            </p>
+            <label for="sell"> <input type="checkbox" value="იყიდება">ყიდვა</label>
+            <label for="sell"> <input type="checkbox" value="იყიდება">ყიდვა</label>
+        </div>
+        <div class="location">
+            <div><label for="address">მისამართი <span>*</span></label><br>
+            <input formControlName="address" type="text">
+        <p>მინიმუმ 2 სიმბოლო</p>
+    </div>
+            <div><label for="postal-index">საფოსტო ინდექსი <span>*</span></label><br>
+                <input type="text">
+                <p>მხოლოდ რიცხვები<p></div>
+                <div><label for="selected-region">რეგიონი</label><br>
+                    <select (change)="handleRegionChange($event)">
+                        @for(region of regions(); track region){<option value={{region.id}}>{{region.name}}</option>}
+                        </select>
+                </div>
+                <div><label for="selected-city">ქალაქი</label><br>
+                    <select >
+                        @for(city of fileteredcities(); track city.id){<option value={{city.id}}>{{city.name}}</option>}
+                        </select>
+                </div>
+        </div>
+        <div class="flat-info">
+            <p>ბინის დეტალები</p>
+            <div class="flat-cost-div">
+                <label for="cost">ფასი</label>
+                <br>
+                <input type="text">
+                <p>მხოლოდ ციფრები</p>
+            </div>
+            <div class="flat-square-div"></div>
+                <label for="sqr">ფართობი</label>
+                <br>
+                <input type="text">
+                <p>მხოლოდ ციფრები</p>
+                <div class="flat-bedroom-div">
+                    <label for="beroom-amount">საძინებლების რაოდენობა *</label>
+                    <br>
+                    <input type="text">
+                    <p>მხოლოდ ციფრები</p>
+                </div>
+                <div class="flat-description">
+                    <label>აღწერა *</label>
+                    <br>
+                  <textarea></textarea>
+                    <p>მინიმუმ 5 სიტყვა</p>
+                </div>
+                <div class="upload-photo">
+                    <label>ატვირთეთ ფოტო</label>
+                    <input type="file">
+                </div>
+                <div class="agent-field"></div>
+                <div>
+                    <p>აგენტი</p>
+                    <div>
+                        <label>აირჩიე</label>
+                        <select class="agent-select"></select>
+                    </div>
+                </div>
+            </div>  
+         
+  
+    </form>
 </section>

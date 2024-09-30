@@ -3,6 +3,12 @@ export interface RegionObject{
     name:string
   }
 
+  export interface CityObject{
+        id: number,
+        name: string,
+        region_id: number
+      }
+
   export interface FiletersObject{
    
       regions:string[],
