@@ -1,0 +1,41 @@
+<section class="agent-modal-container">
+    <h1>დაამატე აგენტი</h1>
+    <form [formGroup]="form" >
+       <div class="agent-personal-info">
+        <div class="name-info">
+            <label>სახელი *</label>
+            <input type="text" formControlName="name">
+            <p>მინიმუმ ორი სიმბოლო</p>
+        </div>
+        <div class="surname-info">
+            <label>გვარი *</label>
+            <input type="text" formControlName="surname">
+            <p>მინიმუმ ორი სიმბოლო</p>
+        </div>
+       </div>
+       <div class="agent-contact-info">
+        <div class="email-info">
+            <label>ელ_ფოსტა *</label>
+            <input type="email" formControlName="email">
+        </div>
+        <div class="tel-info">
+            <label>ტელეფონის ნომერი *</label>
+            <input type="tel" formControlName="phone_number">
+            <p>მხოლოდ რიცხვები</p>
+        </div>
+       </div>
+       <div class="agent-picture">
+        <label>ატვირთეთ ფოტო *</label>
+        <div class="upload-agent-photo" (click)="uploadAgentPhoto($event)">
+            <input type="file" #fileInput formControlName="photo" class="agent-photo-upload-input" (change)="service.uploadPhoto($event)">
+            <div class="plus">+</div>
+        </div>
+
+       </div>
+       <button (click)="closeDialog()">cancel</button>
+    </form>
+    <button type="button" (click)="postAgentInfo()">send Data</button>
+</section>
+
+<!-- <button type="button" (click)="postAgentInfo()">send Data</button> -->
+

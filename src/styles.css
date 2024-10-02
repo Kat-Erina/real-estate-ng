@@ -210,3 +210,41 @@ padding: 24px;
 }
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* styles.css or your component's stylesheet */
+.blur {
+    filter: blur(2px);
+    pointer-events: none; /* Optional: Prevents interaction with blurred content */
+    /* background-color: red; */
+  }
+
+
+
+  .upload-agent-photo {
+    cursor: pointer; 
+    border: 2px dashed #ccc;
+    padding: 20px; 
+    text-align: center;
+    color: #666; 
+    display: flex;
+    justify-content: center;
+  }
+  .upload-agent-photo:hover {
+    background-color: #f0f0f0; /* Example: hover effect */
+  }
+  .agent-picture{
+    border: 1px solid red;
+  }
+  .agent-photo-upload-input{
+    display: none;
+  }
+  
+  .plus{
+    height: 20px;
+    width: 20px;
+    border: 1px solid #525355;
+    border-radius: 50%;
+  }

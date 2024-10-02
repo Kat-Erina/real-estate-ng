@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { ListingFilterService } from '../../../listing.filter.service';
-import { FiletersObject } from '../../../types';
+import { ListingFilterService } from '../../../core/listing.filter.service'; 
+import { FiletersObject } from '../../../core/types';
 import { CommonModule } from '@angular/common';
 
 @Component({

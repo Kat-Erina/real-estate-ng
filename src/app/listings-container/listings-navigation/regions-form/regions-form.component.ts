@@ -1,10 +1,10 @@
 // import { HttpClient } from '@angular/common/http';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { RegionCheckboxComponent } from './region-checkbox/region-checkbox.component';
-import { RegionObject } from '../../../types';
-import { ListingFilterService } from '../../../listing.filter.service';
+import { RegionObject } from '../../../core/types';
+import { ListingFilterService } from '../../../core/listing.filter.service'; 
 import { CommonModule } from '@angular/common';
-import { Service } from '../../../services.service';
+import { Service } from '../../../core/services.service';
 
 
 @Component({

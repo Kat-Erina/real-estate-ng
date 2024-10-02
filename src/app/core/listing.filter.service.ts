@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, Signal, signal, WritableSignal } from "@angular/core";
-import { RegionObject } from "./types";
 
 @Injectable({'providedIn':"root"})
 export class ListingFilterService{
@@ -40,9 +39,6 @@ toggle(target:string){
                 return this.chosenField()
       }
 
-//       fetcheRegionsData() {
-//         return  this.httpRequest.get<RegionObject[]>('https://api.real-estate-manager.redberryinternship.ge/api/regions')
-// }
 
 
 handleClickeventLeft(e:Event,minInput:WritableSignal<string>, array:WritableSignal<string[]>, maxInput:WritableSignal<string> ){
@@ -82,7 +78,6 @@ updateFiltersObjectstorage(field:string, array:string[]|string){
         window.localStorage.setItem('savedObject',JSON.stringify(updatedObj))
     }
 this.allowToClear.set(true)
-console.log(this.allowToClear())
 this.chosenField.set("");
 
 }

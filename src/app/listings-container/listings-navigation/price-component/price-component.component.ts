@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { minimumPricesArray, maximumPricesArray } from '../data-array';
-import { ListingFilterService } from '../../../listing.filter.service';
+import { minimumPricesArray, maximumPricesArray } from '../../../core/data-array';
+import { ListingFilterService } from '../../../core/listing.filter.service'; 
 import { MinimumItemComponent } from './minimum-item/minimum-item.component';
 import { MaximumItemComponent } from './maximum-item/maximum-item.component';
 

@@ -1,12 +1,12 @@
-<section class="listings-container">
-    <form [formGroup]="form">
+<section class="listings-container" >
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <h2>ლისტინგის დამატება</h2>
         <div class="type">
             <p >
                 გარიგების ტიპი
             </p>
-            <label for="sell"> <input type="checkbox" value="იყიდება">ყიდვა</label>
-            <label for="sell"> <input type="checkbox" value="იყიდება">ყიდვა</label>
+            <label for="sell"> <input type="radio" formControlName="offer" value="იყიდება">ყიდვა</label>
+            <label for="sell"> <input type="radio" formControlName="offer" value="ქირავდება">ქირავდება</label>
         </div>
         <div class="location">
             <div><label for="address">მისამართი <span>*</span></label><br>
@@ -58,14 +58,21 @@
                 </div>
                 <div class="agent-field"></div>
                 <div>
-                    <p>აგენტი</p>
+                    <p >აგენტი</p>
                     <div>
                         <label>აირჩიე</label>
-                        <select class="agent-select"></select>
+                        <select  class="agent-select" (change)="cityService.onAddAgent($event)">
+                            @for (agent of agents(); track agent) {
+                                <option value="agent.name">{{agent.name}} {{agent.surname}}</option>
+                               
+                            }
+                            <option  value="addAgent">Add a new Agent</option>
+                            <option value="'raghac'">hehehe</option>
+                        </select>
                     </div>
                 </div>
             </div>  
          
-  
+  <button type="submit">Submit</button>
     </form>
 </section>

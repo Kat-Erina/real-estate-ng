@@ -1,14 +1,16 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { ListingFilterService } from '../listing.filter.service';
-import { CityObject, RegionObject } from '../types';
-import { Service } from '../services.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ListingFilterService } from '../core/listing.filter.service'; 
+import { Agent, CityObject, RegionObject } from '../core/types';
+import { Service } from '../core/services.service';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-listings-modal',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './listings-modal.component.html',
   styleUrl: './listings-modal.component.css'
 })
@@ -21,14 +23,31 @@ cities=signal<CityObject[]>([]);
 regionId=signal<number>(0);
 fileteredcities=signal<CityObject[]>([]);
 formBuilder=inject(FormBuilder);
+agents=signal<Agent[]>([]);
+agentDialogOpen=this.cityService.agentDialogOpen
 
-form=this.formBuilder.group({
-  address:"raghac",
-
+form=new FormGroup({
+  address:new FormControl('', {
+    validators:[Validators.required, Validators.minLength(2)]
+}), 
+zip_code:new FormControl('', {validators:[Validators.required, Validators.pattern(/^[0-9]+$/
+)]}), 
+city_id:new FormControl('', {validators:[Validators.required]}), 
+price:new FormControl('', {validators:[Validators.required,  Validators.pattern(/^[0-9]+$/)]}), 
+area:new FormControl('', {validators:[Validators.required,  Validators.pattern(/^[0-9]+$/)]}), 
+bedrooms:new FormControl('', {validators:[Validators.required,  Validators.pattern(/^[0-9]+$/)]}), 
+description:new FormControl('', {validators:[Validators.required,  Validators.pattern(/^([a-zA-Zა-ჰ]+(\s+|$)){5,}$/)]}), 
+agent_id:new FormControl('', {validators:Validators.required}),
+is_rental:new FormControl('', {validators:Validators.required}),
+image:new FormControl('', {validators:Validators.required}),
+// created_at:new FormControl('', {validators:Validators.required}),
+id:new FormControl('', {validators:Validators.required}),
+region:new FormControl('', {validators:Validators.required}),
+offer:new FormControl('ქირავდება')
 })
 
 onSubmit(){
-  console.log('raghac')
+  console.log(this.form.value)
 }
 
 
@@ -46,20 +65,16 @@ ngOnInit(): void {
       }
      })
 
-     let agentsFetch= this.cityService.fetchDataWithToken('agents', this.cityService.myToken).subscribe((response)=>console.log(response))
+     let agentsFetch= this.cityService.fetchDataWithToken('agents', this.cityService.myToken).subscribe((response)=>this.agents.set(response))
        
-  
- 
- this.destroyRef.onDestroy(()=>{regionsSubscription.unsubscribe()
+  this.destroyRef.onDestroy(()=>{regionsSubscription.unsubscribe()
   citiesSubscription.unsubscribe();
   agentsFetch.unsubscribe()
 }
 );
  }
 
-// form=new FormGroup({
 
-// })
 
  handleRegionChange(e:Event){
   const value=(e.target as HTMLSelectElement).value
@@ -69,5 +84,6 @@ ngOnInit(): void {
  }
 
 
- 
+ selectedAgent=""
+
 }

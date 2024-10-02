@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ListingFilterService } from '../../../listing.filter.service';
-import { minimumAreaArray, maximumAreaArray } from '../data-array';
+import { ListingFilterService } from '../../../core/listing.filter.service'; 
+import { minimumAreaArray, maximumAreaArray } from '../../../core/data-array';
 import { MinimumAreaItemComponent } from './minimum-area-item/minimum-area-item.component';
 import { MaximumAreaItemComponent } from './maximum-area-item/maximum-area-item.component';
 

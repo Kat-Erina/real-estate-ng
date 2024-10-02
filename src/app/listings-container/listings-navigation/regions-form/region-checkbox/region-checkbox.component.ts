@@ -1,6 +1,6 @@
 import { Component, inject, Input, input } from '@angular/core';
-import { RegionObject } from '../../../../types';
-import { ListingFilterService } from '../../../../listing.filter.service';
+import { RegionObject } from '../../../../core/types';
+import { ListingFilterService } from '../../../../core/listing.filter.service';
 
 @Component({
   selector: 'app-region-checkbox',

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild, viewChild } from '@angular/core';
-import { ListingFilterService } from '../../../listing.filter.service';
+import { ListingFilterService } from '../../../core/listing.filter.service'; 
 
 @Component({
   selector: 'app-bedroom-filter-component',

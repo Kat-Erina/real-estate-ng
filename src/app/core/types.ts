@@ -17,3 +17,9 @@ export interface RegionObject{
       bedroom:""
   
   }
+  export interface Agent{
+    id: Number,
+    name: string,
+    surname: string,
+    avatar: string
+  }
