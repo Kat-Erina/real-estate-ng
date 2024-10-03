@@ -225,12 +225,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
   .upload-agent-photo {
     cursor: pointer; 
-    border: 2px dashed #ccc;
+    border: 2px dashed #cccccc;
     padding: 20px; 
     text-align: center;
     color: #666; 
     display: flex;
     justify-content: center;
+    
   }
   .upload-agent-photo:hover {
     background-color: #f0f0f0; /* Example: hover effect */
@@ -247,4 +248,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 20px;
     border: 1px solid #525355;
     border-radius: 50%;
+  }
+
+  input.ng-invalid.ng-dirty{
+    border:2px solid red
+  }
+
+  .invalid-description{
+    color: red
+  }
+.invalid-border{
+    border:3px solid red
+}
+  .valid-description{
+    color: rgb(0, 255, 132)
   }

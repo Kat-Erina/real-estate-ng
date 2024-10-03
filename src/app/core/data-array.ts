@@ -3,3 +3,14 @@ export const maximumPricesArray=["50,000", "100,000", "150,000", "200,000", "300
 
 export const minimumAreaArray=["50", "70", "100", "150", "200"];
 export const maximumAreaArray=["50", "70", "100", "150", "200"]
+
+export const allowedTypes = [
+    'image/jpeg',
+    'image/png',
+    'image/gif',
+    'image/bmp',
+    'image/webp',
+    'image/tiff',
+    'image/svg+xml'
+  ];
+  

@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { CityObject, RegionObject } from "./types";
 import { MatDialog } from "@angular/material/dialog";
 import { AgentModalComponent } from "../agent-modal/agent-modal.component";
-import { A } from "@angular/cdk/keycodes";
+import { allowedTypes } from "./data-array";
+import { tap } from "rxjs";
 
 @Injectable({'providedIn':"root"})
 export class Service{
@@ -12,9 +13,9 @@ myToken='9d21d719-0787-4dc4-b20d-a1e819ada6b4';
 api='https://api.real-estate-manager.redberryinternship.ge/api/';
 dialog=inject(MatDialog);
 agentDialogOpen=false;
-agentPhoto=signal<any>({})
+agentPhoto=signal<any>({});
+validImageType=signal(true)
 
-// constructor(private dialog: MatDialog) {}
 fetchData(param:string){
 let newApi=this.api+param
 return this.httpRequest.get<CityObject[]>(newApi)
@@ -31,7 +32,7 @@ postData(param: string,  data:any){
     const headers = new HttpHeaders({
         'Authorization': `Bearer ${this.myToken}`, 
         'accept': 'application/json',
-        // 'Content-Type': 'multipart/form-data' 
+        
       });
       return this.httpRequest.post(newApi, data, { headers })
 }
@@ -42,16 +43,14 @@ addAgent(){
    
     console.log("swori aircha");
     let dialogRef=this.dialog.open(AgentModalComponent, {
-        
-            height: '400px',
+         height: '400px',
             width: '600px',
           
     })
-
-    dialogRef.afterClosed().subscribe(result => {
-        console.log('Dialog closed with result:', result);
-        this.agentDialogOpen=false;
+    dialogRef.afterClosed().subscribe(() => {
+       this.agentDialogOpen=false;
       });
+    
   }
 
 
@@ -67,8 +66,12 @@ addAgent(){
     const target=e.target as HTMLInputElement;
     if (target.files && target.files.length > 0 && target.files[0]){
   if(target.files[0]){
- console.log(target.files[0]);
-this.agentPhoto.set(target.files[0])
+ 
+ if(allowedTypes.includes(target.files[0].type))
+{this.validImageType.set(false)
+  this.agentPhoto.set(target.files[0])}
+ else {alert("please upload image only, no other document"); return}
         }
+
  }
   }}

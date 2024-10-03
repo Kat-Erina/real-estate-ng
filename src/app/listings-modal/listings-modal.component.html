@@ -62,12 +62,12 @@
                     <div>
                         <label>აირჩიე</label>
                         <select  class="agent-select" (change)="cityService.onAddAgent($event)">
-                            @for (agent of agents(); track agent) {
+                            <!-- @for (agent of agents(); track agent) {
                                 <option value="agent.name">{{agent.name}} {{agent.surname}}</option>
                                
-                            }
+                            } -->
+                                <option *ngFor="let agent of agents()" [value]="agent.id">{{agent.name}} {{agent.surname}}</option>
                             <option  value="addAgent">Add a new Agent</option>
-                            <option value="'raghac'">hehehe</option>
                         </select>
                     </div>
                 </div>
