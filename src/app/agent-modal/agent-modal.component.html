@@ -4,12 +4,12 @@
        <div class="agent-personal-info">
         <div class="name-info">
             <label>სახელი *</label>
-            <input type="text" formControlName="name" [ngClass]="formsubmitted&& form.controls['name'].invalid?'invalid-border':''">
+            <input  type="text" formControlName="name" [ngClass]="formsubmitted&& form.controls['name'].invalid?'invalid-border':''">
             <small [ngClass]="formsubmitted|| form.controls['name'].dirty? ( form.controls['name'].invalid ? 'invalid-description' :'valid-description') :''">მინიმუმ ორი სიმბოლო</small>
         </div>
         <div class="surname-info">
             <label>გვარი *</label>
-            <input type="text" formControlName="surname" [ngClass]="formsubmitted&& form.controls['surname'].invalid?'invalid-border':''" >
+            <input  type="text" formControlName="surname" [ngClass]="formsubmitted&& form.controls['surname'].invalid?'invalid-border':''" >
             <small [ngClass]="formsubmitted|| form.controls['surname'].dirty?(form.controls['surname'].invalid?'invalid-description':'valid-description'):''">მინიმუმ ორი სიმბოლო</small>
         </div>
        </div>
@@ -21,15 +21,16 @@
         </div>
         <div class="tel-info">
             <label>ტელეფონის ნომერი *</label>
-            <input type="tel" formControlName="phone" [ngClass]="formsubmitted&& form.controls['phone'].invalid?'invalid-border':''">
+            <input  type="tel" formControlName="phone" [ngClass]="formsubmitted&& form.controls['phone'].invalid?'invalid-border':''">
             <small [ngClass]="formsubmitted|| form.controls['phone'].dirty?(form.controls['phone'].invalid?'invalid-description':'valid-description'):''">მხოლოდ რიცხვები</small>
         </div>
        </div>
        <div class="agent-picture">
         <label [ngClass]="formsubmitted|| form.controls['avatar'].dirty?(form.controls['avatar'].invalid?'invalid-description':'valid-description'):''">ატვირთეთ ფოტო *</label>
         <div class="upload-agent-photo" (click)="uploadAgentPhoto()">
-            <input type="file" #fileInput formControlName="avatar" class="agent-photo-upload-input" (change)="service.uploadPhoto($event)">
-            <div class="plus">+</div>
+            <input  type="file" #fileInput formControlName="avatar" class="agent-photo-upload-input" (change)="service.uploadPhoto($event)">
+            <img ngClass="agent-photo" *ngIf="service.hide" [src]="previewImage()" alt="Agent Photo" class="uploaded-image">
+            <div class="plus" [ngClass]="{'agent-photo-upload-input':service.hide}">+</div>
         </div>
 
        </div>

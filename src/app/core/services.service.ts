@@ -5,6 +5,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { AgentModalComponent } from "../agent-modal/agent-modal.component";
 import { allowedTypes } from "./data-array";
 import { tap } from "rxjs";
+import { FormGroup } from "@angular/forms";
 
 @Injectable({'providedIn':"root"})
 export class Service{
@@ -14,13 +15,17 @@ api='https://api.real-estate-manager.redberryinternship.ge/api/';
 dialog=inject(MatDialog);
 agentDialogOpen=false;
 agentPhoto=signal<any>({});
-validImageType=signal(true)
+validImageType=signal(true);
+previewImage=signal('');
+hide=false
 
+//es sheidzleba gavushva listing modalshi
 fetchData(param:string){
 let newApi=this.api+param
 return this.httpRequest.get<CityObject[]>(newApi)
 }
 
+//es sheidzleba gavushva listing modalshi
 fetchDataWithToken(param:string, token: string){
     let headers=new HttpHeaders().set('Authorization', `Bearer ${token}`)
     let newApi=this.api+param;
@@ -39,9 +44,6 @@ postData(param: string,  data:any){
 
 addAgent(){
     this.agentDialogOpen=true;
-    console.log(this.agentDialogOpen)
-   
-    console.log("swori aircha");
     let dialogRef=this.dialog.open(AgentModalComponent, {
          height: '400px',
             width: '600px',
@@ -54,24 +56,44 @@ addAgent(){
   }
 
 
-  onAddAgent(e:Event){
-     const targetValue=(e.target as HTMLSelectElement).value;
-   if(targetValue==='addAgent'){
-      this.addAgent()
-    }
-   else {console.log("sxva avarchie")} 
-  }
 
+  updateInfoStorage(param:string,form: FormGroup, information:any,localstorageName:string){
+    
+let data=localStorage.getItem(localstorageName);
+
+if(data!=null){
+  let updatedData=JSON.parse(data);
+  let updatedInformation={...updatedData, [param]:form.get(param)?.value}
+  localStorage.setItem(localstorageName, JSON.stringify(updatedInformation))
+}
+
+   
+    // localStorage.setItem(localstorageName, JSON.stringify(updatedInformation))
+  }
   uploadPhoto(e:Event){
-    const target=e.target as HTMLInputElement;
+    console.log(e)
+     const target=e.target as HTMLInputElement;
+     console.log(target)
     if (target.files && target.files.length > 0 && target.files[0]){
-  if(target.files[0]){
+
  
  if(allowedTypes.includes(target.files[0].type))
-{this.validImageType.set(false)
-  this.agentPhoto.set(target.files[0])}
+{
+  const reader = new FileReader();
+  reader.onload = () => {
+    this.previewImage.set(reader.result as string);
+    localStorage.setItem('agentPhoto', JSON.stringify(this.previewImage()));
+  }
+  reader.readAsDataURL(target.files[0]);
+  this.validImageType.set(false)
+  this.agentPhoto.set(target.files[0]);
+
+this.hide=true
+  
+
+}
  else {alert("please upload image only, no other document"); return}
-        }
+     
 
  }
   }}

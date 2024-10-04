@@ -241,6 +241,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   .agent-photo-upload-input{
     display: none;
+    z-index: 0;
   }
   
   .plus{
@@ -262,4 +263,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
   .valid-description{
     color: rgb(0, 255, 132)
+  }
+
+  .agent-photo{
+    height: 50px;
+    width: 50px;
+    border: 1px solid red;
+    z-index: 1;
   }
