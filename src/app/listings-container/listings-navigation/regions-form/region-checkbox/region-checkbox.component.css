@@ -1,0 +1,15 @@
+.checkbox{
+    /* margin-right: 10px; */
+    width: 8px;
+    height: 8px;
+    transform: scale(1.5);
+   accent-color: green;
+
+ 
+ }
+
+ .custom-checkbox-label{
+    font-size: 14px;
+ 
+ }
+

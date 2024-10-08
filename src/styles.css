@@ -4,92 +4,26 @@
     padding: 0;
 }
 
-header{
-    border-bottom: 1px solid #DBDBDB;
-    height:100px;
- display: flex;
- align-items: center;
-}
-header img{
-    margin-left: 162px;}
-    .listings-navigation-container{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-       
-        
-    }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     main{
         width: 100%;
-        padding: 50px 162px;
-    }
-    .filter-lists{
-        padding: 10px;
-       display: flex;
-        flex-direction: row;
-        list-style: none;
-        justify-content: space-between;
-        border: 1px solid #DBDBDB;
-        border-radius: 10px;
-        
-       
-    
-    }
-   
-    .filter-item i{
-        font-size: 10px;
-    }
-    .filter-item p{
-       font-size: 20px;
-        font-weight: bold;
-        padding: 5px;
-        border-radius: 5px;
-    }
-    .filter-item p:hover{
-        background-color:#DBDBDB; 
-    }
-
-    .filter-options{
-        width: 50%;
-    }
-
-    .add-btns-container{
-        height: 70px;
+        border:1px solid blue;
+        display: flex;
+position: relative;
         
     }
-  .add-listing-btn, .add-agent-btn {
-    font-size: 22px;
-    
-    border-radius: 10px;
-    padding: 12px 20px;
-    font-weight: bold;
-    border: none;
-   }
-   .add-listing-btn{
-    background-color: #F93B1D;
-    color: white;
-    margin-right: 20px;
-    
-   }
-   .add-agent-btn{
-    color: #F93B1D;
-    background-color: #fff;
-    border: 2px solid #F93B1D ;
-   }
-   
-   .chosen-fileters-container{
-    margin-top: 20px;
-    z-index: 0;
-   }
+
 
    .region-form, .prices-form, .area-form, .bedroom-form{
     
-    width: 40%;
-   background-color: #fff;
-    margin-top: -40px;
+    width: 75vw;
+   background-color: #ffffff;
+    
+    top:50px;
     z-index: 1;
     position: absolute;
+    
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -98,29 +32,15 @@ header img{
    }
 
   
-   .regions-selection-form{
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    grid-template-rows: repeat(4, auto);
-    gap: 10px;
 
-}
 .region-form p, .prices-form p, .area-form p, .bedroom-form p{
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
     border:1px solid red
 }
-.checkbox{
-   margin-right: 10px;
-   transform: scale(1.5);
-  accent-color: green;
 
 
-}
-.checkbox:checked{
-    background-color: #F93B1D;
-}
 .select-region-btn, .select-area-btn, .select-bedroom-btn{
     margin-top: 20px;
     width: 77px;
@@ -129,24 +49,13 @@ header img{
     background-color: #F93B1D;
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 8px;
-    align-self: flex-end
+   
+ border-radius: 8px;
+    align-self: flex-end;
+    align-items: center;
 }
-.prices-form{
-    width: 20%;
-    left: 16%;
-    padding: 24px;
-}
-.area-form{
-    width: 20%;
-    left: 28%;
-    padding: 24px;
-}
-.bedroom-form{width: 15%;
-left: 35%;
-padding: 24px;
-}
+
+
 
 
 .price-inputs-container, .area-inputs-container{
@@ -156,14 +65,7 @@ padding: 24px;
     
     }
 
-.input-container{
-    width: 50%;
-    height: 42px;
-    border: 1px solid #808A93;;
-    display: flex;
-    align-items: center;
-    padding-right: 10px;
-}
+
 
 
 .price-input, .area-input{
@@ -174,16 +76,8 @@ padding: 24px;
     outline: none
    
 }
-.bedroom-input{
-    border: 1px solid #808A93;
-    border-radius: 6px;
-    width:40px;
-    height: 42px;
-    padding: 15px;
-}
-.input-container-1{
-    margin-right: 17px;
-}
+
+
 .price-options, .area-options{
     
     width: 100%;
@@ -202,17 +96,27 @@ padding: 24px;
 .price-option-first ul li, .price-option-second ul li, .area-option-first ul li, .area-option-second ul li{
     padding-top: 10px;
     color: #2D3648;
+    font-size: 13px;
     }
 
 .price-option-first, .price-option-second, .area-option-first, .area-option-second{
     border: 1px solid red;
     width: 50%;
 }
+.input-container{
+  width: 50%;
+  height: 32px;
+  border: 1px solid #808A93;;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+.input-container-1{
+  margin-right: 17px;
+}
 
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* styles.css or your component's stylesheet */
 .blur {
@@ -223,7 +127,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 
-  .upload-agent-photo {
+  .upload-agent-photo, .upload-listing-photo {
     cursor: pointer; 
     border: 2px dashed #cccccc;
     padding: 20px; 
@@ -233,13 +137,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center;
     
   }
-  .upload-agent-photo:hover {
+  .upload-agent-photo:hover, .upload-listing-photo:hover {
     background-color: #f0f0f0; /* Example: hover effect */
   }
-  .agent-picture{
+  .agent-picture, .listing-picture{
     border: 1px solid red;
   }
-  .agent-photo-upload-input{
+  .agent-photo-upload-input, .listing-photo-upload-input{
     display: none;
     z-index: 0;
   }
@@ -265,7 +169,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: rgb(0, 255, 132)
   }
 
-  .agent-photo{
+  .agent-photo, .listing-photo{
     height: 50px;
     width: 50px;
     border: 1px solid red;

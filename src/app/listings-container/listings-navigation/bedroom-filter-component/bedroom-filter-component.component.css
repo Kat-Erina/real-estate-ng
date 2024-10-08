@@ -1,0 +1,15 @@
+.bedroom-form{
+    padding: 10px;
+    width: 200px;
+    left: 45%;
+    /* padding: 24px; */
+}
+.bedroom-input{
+    border: 1px solid #808A93;
+    border-radius: 6px;
+    
+    height: 32px;
+    padding: 5px;
+    width: 30px;
+    
+}

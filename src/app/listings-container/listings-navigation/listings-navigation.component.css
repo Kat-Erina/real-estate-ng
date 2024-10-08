@@ -1,0 +1,110 @@
+.listings-navigation-container{
+    
+    flex-direction: column;
+    width: 100vw;
+    
+   border:3px solid black;
+  
+   background-color: red;
+   padding: 0;
+   z-index: 0;
+   
+    
+}
+
+.filter-lists{
+    background-color: rgb(187, 0, 255);
+   
+   
+    border: 1px solid #DBDBDB;
+    border-radius: 10px;
+    
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
+   
+
+}
+
+.filter-item {
+    border: 1px solid red;
+ 
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+.filter-item i{
+    
+    font-size: clamp(0.7rem, 1.2vw, 1.5rem);
+}
+.filter-item p{
+ 
+    font-weight: bold;
+   
+    border-radius: 5px;
+     font-size: clamp(0.7rem, 1.2vw, 1.5rem);
+    /* font-size: clamp(0.7rem, 1.2vw, 1.5rem); */
+}
+.filter-item p:hover{
+    background-color:#DBDBDB; 
+}
+
+.filter-options{
+    width: 100%;
+    border:2px solid blue
+}
+
+.add-btns-container{
+   
+    background-color: rgb(229, 255, 127);
+    width: 100%;
+   height: 50px;
+   padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    z-index: 0;
+    
+}
+.add-listing-btn, .add-agent-btn {
+    padding: 0.5rem;
+font-size: 12px;
+
+border-radius: 10px;
+/* padding: 12px 20px; */
+font-weight: bold;
+border: none;
+font-size: 12px;
+
+
+}
+
+.add-listing-btn{
+    background-color: #1d3ef9;
+    color: white;
+    /* padding: 0; */
+    font-size: 10px;
+   
+    
+   }
+   .add-agent-btn{
+    color: #F93B1D;
+    background-color: #fff;
+    border: 2px solid #F93B1D ;
+    /* padding: 0; */
+    font-size: 10px;
+   }
+   
+
+   @media screen and (min-width:550px) {
+    .filter-item {
+        width: 150px;
+        padding: 0.5rem;
+    }
+   }

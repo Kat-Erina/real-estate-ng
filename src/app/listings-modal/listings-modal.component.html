@@ -1,31 +1,38 @@
-<section (click)="onSubmit()" class="listings-container" >
+<section  class="listings-container" >
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <h2>ლისტინგის დამატება</h2>
         <div class="type">
             <p>
                 გარიგების ტიპი
             </p>
-            <label for="sell">
-                 <input type="radio" formControlName="is_rental"  value="0" (input)="updateListinInfoStorage('is_rental')">ყიდვა</label>
-            <label for="rent"> 
-                <input type="radio" formControlName="is_rental" value="1" (input)="updateListinInfoStorage('is_rental')">ქირავდება</label>
+            <div class="type-optionts">
+                <label for="sell" class="sell">
+                    <input type="radio" class="radio-sell" formControlName="is_rental"  value="0" >ყიდვა</label>
+               <label for="rent" class="rent"> 
+                   <input type="radio" class="radio-rent" formControlName="is_rental" value="1" >ქირავდება</label>
+            </div>
         </div>
         <div class="location">
+            <h2>მდებარეობა</h2>
+           <div class="address-container">
             <div><label for="address">მისამართი <span>*</span></label><br>
-            <input formControlName="address"  type="text" (input)="updateListinInfoStorage('address')">
-        <p>მინიმუმ 2 სიმბოლო</p>
-    </div>
-            <div><label for="postal-index">საფოსტო ინდექსი <span>*</span></label><br>
-                <input type="text" formControlName="zip_code" (input)="updateListinInfoStorage('zip_code')">
-                <p>მხოლოდ რიცხვები<p></div>
+                <input class="address-input" formControlName="address"  type="text" >
+            <small>მინიმუმ 2 სიმბოლო</small>
+        </div>
+                <div class="postal-code-container"><label for="postal-index" class="postal-index">საფოსტო ინდექსი <span>*</span></label><br>
+                    <input type="text" class="zip_code" formControlName="zip_code">
+                    <small>მხოლოდ რიცხვები</small></div>
+           </div>
                 <div><label for="selected-region">რეგიონი</label><br>
-                    <select (change)="handleRegionChange($event)" formControlName="region_id" (input)="updateListinInfoStorage('region_id')">
-                        @for(region of regions(); track region){<option value={{region.id}}>{{region.name}}</option>}
-                        </select>
+                    <select (change)="handleRegionChange($event)" formControlName="region_id" >
+                            <option value="" disabled selected>აირჩიეთ რეგიონი</option>
+                           <option *ngFor="let region of regions()" value={{region.id}}>{{region.name}}</option>
+                            </select>
                 </div>
                 <div><label for="selected-city">ქალაქი</label><br>
-                    <select formArrayName="city_id" (input)="updateListinInfoStorage('city_id')">
-                        @for(city of fileteredcities(); track city.id){<option value={{city.id}}>{{city.name}}</option>}
+                    <select formArrayName="city_id"  formControlName="city_id">
+                        <option value="" disabled selected>აირჩიეთ ქალაქი</option>
+                           <option *ngFor="let city of cities()" value={{city.id}}>{{city.name}}</option>
                         </select>
                 </div>
         </div>
@@ -34,44 +41,54 @@
             <div class="flat-cost-div">
                 <label for="cost">ფასი</label>
                 <br>
-                <input type="text" formControlName="price" (input)="updateListinInfoStorage('price')">
-                <p>მხოლოდ ციფრები</p>
+                <input type="text" formControlName="price" >
+                <small>მხოლოდ ციფრები</small>
             </div>
             <div class="flat-square-div"></div>
                 <label for="sqr">ფართობი</label>
                 <br>
-                <input type="text" formControlName="area" (input)="updateListinInfoStorage('area')">
-                <p>მხოლოდ ციფრები</p>
+                <input type="text" formControlName="area" >
+                <small>მხოლოდ ციფრები</small>
                 <div class="flat-bedroom-div">
                     <label for="beroom-amount" >საძინებლების რაოდენობა *</label>
                     <br>
-                    <input type="text" formControlName="bedrooms" (input)="updateListinInfoStorage('bedrooms')">
-                    <p>მხოლოდ ციფრები</p>
+                    <input type="text" formControlName="bedrooms" >
+                    <small>მხოლოდ ციფრები</small>
                 </div>
                 <div class="flat-description">
                     <label>აღწერა *</label>
                     <br>
-                  <textarea formControlName="description" (input)="updateListinInfoStorage('description')"></textarea>
-                    <p>მინიმუმ 5 სიტყვა</p>
+                  <textarea formControlName="description" ></textarea>
+                    <small>მინიმუმ 5 სიტყვა</small>
                 </div>
                 <div class="upload-photo">
                     <label>ატვირთეთ ფოტო</label>
-                    <input type="file" formControlName="image" (input)="updateListinInfoStorage('image')">
+                    <input type="file" formControlName="image" >
                 </div>
                 <div class="agent-field"></div>
                 <div>
                     <p >აგენტი</p>
                     <div>
                         <label>აირჩიე</label>
-                        <select   class="agent-select" (change)="onAddAgent($event)" formControlName="agent_id" (input)="updateListinInfoStorage('agent_id')">
+                        <select   class="agent-select" (change)="onAddAgent($event)" formControlName="agent_id" >
                          
-                                <option *ngFor="let agent of agents()" [value]="agent.id">{{agent.name}} {{agent.surname}}</option>
-                            <option   value="addAgent">Add a new Agent</option>
+                                <option *ngFor="let agent of agentsArray" [value]="agent.id">{{agent.name}} {{agent.surname}}</option>
+                            <option   value="">Add a new Agent</option>
                         </select>
                     </div>
                 </div>
             </div>  
-         
-  <button type="button" (click)="onSubmit()">Submit</button>
+            <div class="listing-picture">
+                <label>ატვირთეთ ფოტო *</label>
+                <div class="upload-listing-photo" (click)="uploadListingPhoto($event)">
+                    <input  type="file" #fileInput formControlName="image" class="listing-photo-upload-input" (change)="cityService.uploadPhoto($event)">
+                    <img ngClass="listing-photo" *ngIf="cityService.listingImagehidden" [src]="cityService.listingImagehidden?cityService.previewListingPhoto():''" alt="Listing Photo" class="uploaded-image" >
+                    <div class="plus" >+</div>
+                </div>
+        
+               </div>
+               <button type="submit" >Submit</button>
+ 
     </form>
+ 
 </section>
