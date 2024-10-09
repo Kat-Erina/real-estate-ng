@@ -1,93 +1,106 @@
 <section  class="listings-container" >
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <h2>ლისტინგის დამატება</h2>
+        <h1>ლისტინგის დამატება</h1>
         <div class="type">
-            <p>
+            <h2>
                 გარიგების ტიპი
-            </p>
+            </h2>
             <div class="type-optionts">
                 <label for="sell" class="sell">
-                    <input type="radio" class="radio-sell" formControlName="is_rental"  value="0" >ყიდვა</label>
+                    <input type="radio"  class="radio-sell" formControlName="is_rental"  value="0" >ყიდვა</label>
                <label for="rent" class="rent"> 
-                   <input type="radio" class="radio-rent" formControlName="is_rental" value="1" >ქირავდება</label>
+                   <input type="radio"class="radio-rent" formControlName="is_rental" value="1" >ქირავდება</label>
             </div>
         </div>
         <div class="location">
             <h2>მდებარეობა</h2>
            <div class="address-container">
             <div><label for="address">მისამართი <span>*</span></label><br>
-                <input class="address-input" formControlName="address"  type="text" >
+                <input class="address-input" formControlName="address"  type="text">
+                <br>
             <small>მინიმუმ 2 სიმბოლო</small>
         </div>
-                <div class="postal-code-container"><label for="postal-index" class="postal-index">საფოსტო ინდექსი <span>*</span></label><br>
+                <div class="postal-code-container"><label for="postal-index" class="postal-index">საფოსტო ინდექსი *</label><br>
                     <input type="text" class="zip_code" formControlName="zip_code">
+                    <br>
                     <small>მხოლოდ რიცხვები</small></div>
            </div>
-                <div><label for="selected-region">რეგიონი</label><br>
-                    <select (change)="handleRegionChange($event)" formControlName="region_id" >
-                            <option value="" disabled selected>აირჩიეთ რეგიონი</option>
-                           <option *ngFor="let region of regions()" value={{region.id}}>{{region.name}}</option>
+                <div class="region-city-container">
+                    <div class="region-container"><label for="selected-region">რეგიონი</label><br>
+                        <select (change)="handleRegionChange($event)" formControlName="region_id" class="region-select">
+                                <option value="" disabled selected>აირჩიეთ რეგიონი</option>
+                               <option *ngFor="let region of regions()" value={{region.id}}>{{region.name}}</option>
+                                </select>
+                    </div>
+                    <div class="city-container"><label for="selected-city">ქალაქი</label><br>
+                        <select formArrayName="city_id"  formControlName="city_id" class="city-select">
+                            <option value="" disabled selected>აირჩიეთ ქალაქი</option>
+                               <option *ngFor="let city of cities()" value={{city.id}}>{{city.name}}</option>
                             </select>
-                </div>
-                <div><label for="selected-city">ქალაქი</label><br>
-                    <select formArrayName="city_id"  formControlName="city_id">
-                        <option value="" disabled selected>აირჩიეთ ქალაქი</option>
-                           <option *ngFor="let city of cities()" value={{city.id}}>{{city.name}}</option>
-                        </select>
+                    </div>
                 </div>
         </div>
         <div class="flat-info">
-            <p>ბინის დეტალები</p>
+            <h2>ბინის დეტალები</h2>
+        <div class="flat-info-container">
             <div class="flat-cost-div">
                 <label for="cost">ფასი</label>
                 <br>
-                <input type="text" formControlName="price" >
+                <input type="text" formControlName="price"  class="cost-input">
+                <br>
                 <small>მხოლოდ ციფრები</small>
             </div>
-            <div class="flat-square-div"></div>
+            <div class="flat-square-div">
                 <label for="sqr">ფართობი</label>
                 <br>
-                <input type="text" formControlName="area" >
-                <small>მხოლოდ ციფრები</small>
+                <input type="text" formControlName="area" class="area-input" >
+                <br>
+                <small>მხოლოდ ციფრები</small></div>
                 <div class="flat-bedroom-div">
                     <label for="beroom-amount" >საძინებლების რაოდენობა *</label>
                     <br>
-                    <input type="text" formControlName="bedrooms" >
+                    <input type="text" formControlName="bedrooms" class="bedrooms-input">
+                    <br>
                     <small>მხოლოდ ციფრები</small>
                 </div>
                 <div class="flat-description">
                     <label>აღწერა *</label>
                     <br>
-                  <textarea formControlName="description" ></textarea>
+                  <textarea formControlName="description" class="description-input"></textarea>
+                  <br>
                     <small>მინიმუმ 5 სიტყვა</small>
                 </div>
-                <div class="upload-photo">
-                    <label>ატვირთეთ ფოტო</label>
-                    <input type="file" formControlName="image" >
-                </div>
-                <div class="agent-field"></div>
-                <div>
-                    <p >აგენტი</p>
+                <div class="listing-picture">
+                    <label>ატვირთეთ ფოტო *</label>
+                    <div class="upload-listing-photo" (click)="uploadListingPhoto($event)">
+                        <input  type="file" #fileInput formControlName="image" class="listing-photo-upload-input" (change)="cityService.uploadPhoto($event)">
+                        <img ngClass="listing-photo" *ngIf="cityService.listingImagehidden" [src]="cityService.listingImagehidden?cityService.previewListingPhoto():''" alt="Listing Photo" class="uploaded-image" >
+                        <div class="plus" >+</div>
+                    </div>
+            
+                   </div>
+                
+                <div class="agent-field">
+                    <p class="agent-p">აგენტი</p>
                     <div>
                         <label>აირჩიე</label>
-                        <select   class="agent-select" (change)="onAddAgent($event)" formControlName="agent_id" >
+                        <br>
+                        <select   class="agent-select" (change)="onAddAgent($event)" formControlName="agent_id"  >
                          
                                 <option *ngFor="let agent of agentsArray" [value]="agent.id">{{agent.name}} {{agent.surname}}</option>
                             <option   value="">Add a new Agent</option>
                         </select>
                     </div>
                 </div>
+        </div>
+
             </div>  
-            <div class="listing-picture">
-                <label>ატვირთეთ ფოტო *</label>
-                <div class="upload-listing-photo" (click)="uploadListingPhoto($event)">
-                    <input  type="file" #fileInput formControlName="image" class="listing-photo-upload-input" (change)="cityService.uploadPhoto($event)">
-                    <img ngClass="listing-photo" *ngIf="cityService.listingImagehidden" [src]="cityService.listingImagehidden?cityService.previewListingPhoto():''" alt="Listing Photo" class="uploaded-image" >
-                    <div class="plus" >+</div>
-                </div>
-        
-               </div>
-               <button type="submit" >Submit</button>
+            <div class="listing-btns">
+                <button type="button" class="cancel">გააუქმე</button>
+                <button type="submit" class="submit">დაამატე ლისტინგი</button>
+            </div>
+          
+             
  
     </form>
  

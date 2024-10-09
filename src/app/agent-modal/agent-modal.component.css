@@ -1,5 +1,53 @@
 .agent-modal-container{
-    width: 500px;
-    height: 500px;
+   
+  
     background-color: aqua;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+  
+   
+}
+
+h1{font-size: 20px;
+   }
+   .agent-form{
+    padding: 16px 0;
+   }
+   label{
+    font-size: 14px;
+    font-weight: bold;
+   
+   }
+
+   .agent-personal-info, .agent-contact-info, .agent-picture{
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+   }
+
+
+   .agent-picture{
+    margin-bottom: 1.4rem;
+   }
+   input{
+    margin-top: 0.5rem;
+    border: 1px solid #808A93;
+    border-radius: 5px;
+    padding: 8px
+   }
+
+   .agent-btns button{
+    padding: 6px 10px;
+    
+    
+    border-radius: 10px;
+     cursor: pointer;
+   
+   }
+   small{
+    font-size: 10px;
+   
 }

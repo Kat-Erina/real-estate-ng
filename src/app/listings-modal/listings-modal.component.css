@@ -1,59 +1,110 @@
 .listings-container{
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    /* position: absolute; */
     padding: 1.2rem;
 }
 
-h2{font-size: 16px;}
-.type, .location{
+h1{font-size: 20px;
+margin-bottom: 1.2rem;}
+
+
+.type, .location, .flat-info{
     margin-top: 0.8rem;
     margin-bottom: 3rem;
     font-size: 14px;
     border:1px solid red;
    
 }
-.type p{
-    font-size: 15px;
+ h2{
+    font-size: 17px;
     font-weight: 700;
     margin-bottom: 0.4rem;
 }
-.type-options{
+/* .type-options{
     display: flex;
     flex-direction: row;
+ } */
+
+ .radio-sell, .radio-rent {
+    vertical-align: middle;
+  }
+  
+
+
+.address-container, .region-city-container, .flat-info-container{
+    border:1px solid rgb(0, 4, 255);
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    gap: 15px;
+    padding-top: 1rem;
+}
+input, select, textarea {
+    height: 30px;
+    padding: 0.5rem;
+    margin: 0.2rem 0;
+    border: 1px solid #808A93;
+    border-radius: 5px;
     
+   }
+   textarea{
+    height: 100px;
+   }
+
+.region-select, .city-select, .address-input, .cost-input, .area-input, .bedrooms-input, .description-input, .agent-select{
+    width: 80%;
 }
 
 
+select{padding: 0;}
+label{font-weight: bold;
+font-size: 14px;}
 .sell, .rent {
     margin-right: 1rem;
  accent-color: black;
- 
+ font-size: 13px;
+ width: 15px;
+ height: 15px;
 }
 
-.address-container{
-    border:1px solid red;
-    display: flex;
-    justify-content: space-between;
-}
-input{
-    height: 30px;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    margin-top: 0.3rem;
-}
+
+
 small{
     font-size: 10px;
+   
 }
 
 .postal-code-container{
-    width: 35%;
-    border: 1px solid red;
-}
-.postal-index{
-    font-size: 11px;
-}
-.zip_code{
-    width: 100%;
+    width: 50%;
+    max-width: 250px;
 }
 
+/* .zip_code{
+    width: 100%;
+    border: 1px solid red;
+} */
+
+.flat-square-div{
+    border: 1px solid red;
+    /* background-color: blue; */
+}
+
+.upload-listing-photo{
+    margin-top: 0.5rem;
+}
+.agent-p{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+}
+
+
+.listing-btns button{
+    padding: 10px 16px;
+    
+    
+    border-radius: 10px;
+     cursor: pointer;
+   
+   }

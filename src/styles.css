@@ -106,7 +106,7 @@ position: relative;
 .input-container{
   width: 50%;
   height: 32px;
-  border: 1px solid #808A93;;
+  border: 1px solid #808A93;
   display: flex;
   align-items: center;
   padding-right: 10px;
@@ -116,7 +116,22 @@ position: relative;
 }
 
 
+.listing-btns, .agent-btns{
+    
+  float: right;
+  display: flex;
+  gap: 10px;
+  
+}
 
+.submit{ background-color: #F93B1D;
+  color: white;
+border: none;}
+.cancel{
+  color: #F93B1D;
+  background-color: white;
+  border:1px solid #F93B1D;
+}
 
 /* styles.css or your component's stylesheet */
 .blur {
@@ -156,22 +171,22 @@ position: relative;
   }
 
   input.ng-invalid.ng-dirty{
-    border:2px solid red
+    border:1px solid #F93B1D
   }
 
   .invalid-description{
-    color: red
+    color: #F93B1D
   }
 .invalid-border{
-    border:3px solid red
+    border:3px solid #F93B1D
 }
   .valid-description{
-    color: rgb(0, 255, 132)
+    color: #45A849
   }
 
   .agent-photo, .listing-photo{
     height: 50px;
     width: 50px;
-    border: 1px solid red;
+    border: 1px solid #F93B1D;
     z-index: 1;
   }
