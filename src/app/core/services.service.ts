@@ -6,11 +6,12 @@ import { AgentModalComponent } from "../agent-modal/agent-modal.component";
 import { allowedTypes } from "./data-array";
 import { tap } from "rxjs";
 import { FormGroup } from "@angular/forms";
+import { environment } from "../../environment/environment.prod";
 
 @Injectable({'providedIn':"root"})
 export class Service{
 httpRequest=inject(HttpClient)
-myToken='9d21d719-0787-4dc4-b20d-a1e819ada6b4';
+myToken=environment.MY_KEY
 api='https://api.real-estate-manager.redberryinternship.ge/api/';
 dialog=inject(MatDialog);
 agentDialogOpen=false;
