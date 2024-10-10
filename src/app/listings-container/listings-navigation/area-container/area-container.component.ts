@@ -24,12 +24,11 @@ handleClickeventRight=this.service.handleClickeventRight;
 updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
 allowToClear=this.service.allowToClear
 chosenField=this.service.chosenField
-handleAreasSubmission(event:Event, field:string, array:string[]){
-  event.preventDefault();
+handleAreasSubmission( field:string, array:string[]){
   if(this.minAreaInput()===" " || this.maxAreaInput() === " ")
     window.alert("გთხოვთ მიუთითოთ ფართობი")
   else if(Number(this.minAreaInput().replace(",", ""))>=Number(this.maxAreaInput().replace(",", ""))){
-      window.alert("მინიმალური ფართობი არ შეიძლება იყოს მაქსიმალურ ფარტობზე მეტი, გთხოვთ შეასწორეთ!");
+      window.alert("გთხოვთ შეიყვანოთ ვალიდური რიცხვები");
       return
   } else {
 

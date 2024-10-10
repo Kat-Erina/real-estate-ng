@@ -15,26 +15,27 @@
         <div class="location">
             <h2>მდებარეობა</h2>
            <div class="address-container">
-            <div><label for="address">მისამართი <span>*</span></label><br>
-                <input class="address-input" formControlName="address"  type="text">
+            <div><label for="address" [ngClass]="listingFormSubmitted()&& form.controls['address'].invalid?'invalid-description':''">მისამართი <span>*</span></label><br>
+                <input class="address-input" formControlName="address"  type="text" >
                 <br>
-            <small>მინიმუმ 2 სიმბოლო</small>
+            <small [ngClass]="form.controls['address'].dirty?(form.controls['address'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i> მინიმუმ 2 სიმბოლო</small>
         </div>
-                <div class="postal-code-container"><label for="postal-index" class="postal-index">საფოსტო ინდექსი *</label><br>
+                <div class="postal-code-container"><label [ngClass]="listingFormSubmitted()&& form.controls['zip_code'].invalid?'invalid-description':''" for="postal-index" class="postal-index">საფოსტო ინდექსი *</label><br>
                     <input type="text" class="zip_code" formControlName="zip_code">
                     <br>
-                    <small>მხოლოდ რიცხვები</small></div>
+                    <small [ngClass]="form.controls['zip_code'].dirty?(form.controls['zip_code'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i> მხოლოდ ციფრები</small></div>
            </div>
                 <div class="region-city-container">
-                    <div class="region-container"><label for="selected-region">რეგიონი</label><br>
+                    <div class="region-container"><label [ngClass]="listingFormSubmitted() && form.controls['region_id'].invalid?'invalid-description':'valid description'" for="selected-region">რეგიონი</label><br>
                         <select (change)="handleRegionChange($event)" formControlName="region_id" class="region-select">
                                 <option value="" disabled selected>აირჩიეთ რეგიონი</option>
                                <option *ngFor="let region of regions()" value={{region.id}}>{{region.name}}</option>
                                 </select>
                     </div>
-                    <div class="city-container"><label for="selected-city">ქალაქი</label><br>
-                        <select formArrayName="city_id"  formControlName="city_id" class="city-select">
-                            <option value="" disabled selected>აირჩიეთ ქალაქი</option>
+                    <div class="city-container"><label  [ngClass]="listingFormSubmitted() && form.controls['city_id'].invalid?'invalid-description':'valid description'" for="selected-region">ქალაქი</label>
+                        <br>
+                        <select formArrayName="city_id"  formControlName="city_id" class="city-select" >
+                            <option value="0" disabled selected>აირჩიეთ ქალაქი</option>
                                <option *ngFor="let city of cities()" value={{city.id}}>{{city.name}}</option>
                             </select>
                     </div>
@@ -44,48 +45,48 @@
             <h2>ბინის დეტალები</h2>
         <div class="flat-info-container">
             <div class="flat-cost-div">
-                <label for="cost">ფასი</label>
+                <label [ngClass]="listingFormSubmitted()&& form.controls['price'].invalid?'invalid-description':''" for="cost">ფასი</label>
                 <br>
                 <input type="text" formControlName="price"  class="cost-input">
                 <br>
-                <small>მხოლოდ ციფრები</small>
+                <small [ngClass]="form.controls['price'].dirty?(form.controls['price'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i> მხოლოდ ციფრები</small>
             </div>
             <div class="flat-square-div">
-                <label for="sqr">ფართობი</label>
+                <label for="sqr" [ngClass]="listingFormSubmitted()&& form.controls['area'].invalid?'invalid-description':''">ფართობი</label>
                 <br>
                 <input type="text" formControlName="area" class="area-input" >
                 <br>
-                <small>მხოლოდ ციფრები</small></div>
+                <small [ngClass]="form.controls['area'].dirty?(form.controls['area'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i> მხოლოდ ციფრები</small></div>
                 <div class="flat-bedroom-div">
-                    <label for="beroom-amount" >საძინებლების რაოდენობა *</label>
+                    <label [ngClass]="listingFormSubmitted()&& form.controls['bedrooms'].invalid?'invalid-description':''" for="beroom-amount" >საძინებლების რაოდენობა *</label>
                     <br>
                     <input type="text" formControlName="bedrooms" class="bedrooms-input">
                     <br>
-                    <small>მხოლოდ ციფრები</small>
+                    <small  [ngClass]="form.controls['bedrooms'].dirty?(form.controls['bedrooms'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i> მხოლოდ ციფრები</small>
                 </div>
                 <div class="flat-description">
-                    <label>აღწერა *</label>
+                    <label [ngClass]="listingFormSubmitted()&& form.controls['description'].invalid?'invalid-description':''">აღწერა *</label>
                     <br>
                   <textarea formControlName="description" class="description-input"></textarea>
                   <br>
-                    <small>მინიმუმ 5 სიტყვა</small>
+                    <small [ngClass]="form.controls['description'].dirty?(form.controls['description'].invalid?'invalid-description':'valid-description'):''">მინიმუმ 5 სიტყვა</small>
                 </div>
                 <div class="listing-picture">
-                    <label>ატვირთეთ ფოტო *</label>
+                    <label [ngClass]="listingFormSubmitted()&& form.controls['image'].invalid?'invalid-description':''">ატვირთეთ ფოტო *</label>
                     <div class="upload-listing-photo" (click)="uploadListingPhoto($event)">
-                        <input  type="file" #fileInput formControlName="image" class="listing-photo-upload-input" (change)="cityService.uploadPhoto($event)">
-                        <img ngClass="listing-photo" *ngIf="cityService.listingImagehidden" [src]="cityService.listingImagehidden?cityService.previewListingPhoto():''" alt="Listing Photo" class="uploaded-image" >
-                        <div class="plus" >+</div>
+                        <input  type="file" #fileInput formControlName="image" class="listing-photo-upload-input" (change)="cityService.uploadListingPhoto($event)">
+                        <img ngClass="listing-photo" *ngIf="cityService.listingImageValidType()" [src]="cityService.listingImageValidType()?cityService.previewListingPhoto():''"alt="Listing Photo" class="uploaded-image" >
+                        <div class="plus" [ngClass]="{'listing-photo-upload-input':cityService.listingImageValidType()}">+</div>
                     </div>
             
                    </div>
                 
                 <div class="agent-field">
-                    <p class="agent-p">აგენტი</p>
+                    <p class="agent-p" [ngClass]="listingFormSubmitted()&& form.controls['agent_id'].invalid?'invalid-description':''" >აგენტი</p>
                     <div>
                         <label>აირჩიე</label>
                         <br>
-                        <select   class="agent-select" (change)="onAddAgent($event)" formControlName="agent_id"  >
+                        <select class="agent-select" (change)="onAddAgent($event)" formControlName="agent_id" >
                          
                                 <option *ngFor="let agent of agentsArray" [value]="agent.id">{{agent.name}} {{agent.surname}}</option>
                             <option   value="">Add a new Agent</option>
@@ -96,7 +97,7 @@
 
             </div>  
             <div class="listing-btns">
-                <button type="button" class="cancel">გააუქმე</button>
+                <button type="button" class="cancel" routerLink="/">გააუქმე</button>
                 <button type="submit" class="submit">დაამატე ლისტინგი</button>
             </div>
           

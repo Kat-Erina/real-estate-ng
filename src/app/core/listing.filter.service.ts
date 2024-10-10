@@ -25,7 +25,10 @@ selectedBedroom=signal<string>('')
 allowToClear=signal<boolean>(false)
 
 
-toggle(target:string){
+toggle(target:string, e:Event){
+  let  eTarget=e.target as HTMLElement;
+console.log(eTarget)
+    console.log(target)
         this.chosenField.set(target)
         let allkeys=Object.keys(this.stateObject);
         allkeys.forEach((el)=>{
@@ -39,7 +42,10 @@ toggle(target:string){
                 return this.chosenField()
       }
 
-
+togglechevron(e:Event){
+    let target=e.target as HTMLElement;
+    console.log(target)
+}
 
 handleClickeventLeft(e:Event,minInput:WritableSignal<string>, array:WritableSignal<string[]>, maxInput:WritableSignal<string> ){
    const target=e.target as HTMLElement;

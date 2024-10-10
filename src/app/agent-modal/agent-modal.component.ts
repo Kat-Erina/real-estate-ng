@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { AddedAgent } from '../core/types';
 import { tap } from 'rxjs';
 import { ListingFilterService } from '../core/listing.filter.service';
+import { ApiService } from '../core/api.service';
 
 
 @Component({
@@ -18,13 +19,14 @@ import { ListingFilterService } from '../core/listing.filter.service';
 export class AgentModalComponent implements OnInit{
 formsubmitted=false;
 dialogRef=inject(MatDialogRef<AgentModalComponent>);
+apiService=inject(ApiService);
 service=inject(Service);
 previewImage=this.service.previewImage
 agentInfo!:AddedAgent
 form!:FormGroup;
 destroyRef=inject(DestroyRef);
 agents=this.service.agents;
-agentFormInvalid=this.service.agentFormInvalid
+agentFormValid=this.service.agentFormValid
 
 
 ngOnInit(): void {
@@ -49,16 +51,20 @@ this.destroyRef.onDestroy(()=>{subscription.unsubscribe()})
 @ViewChild('fileInput') fileInput!:ElementRef;
 
 uploadAgentPhoto(){
+console.log( this.form.controls['avatar'].invalid)
   this.fileInput.nativeElement.click()
   }
 closeDialog() {
   this.dialogRef.close();
   this.service.agentDialogOpen=false;
+  this.agentFormValid.set(false);
 
 }
 postAgentInfo(){
+  console.log('raghac')
+  console.log(this.service.agentFormValid())
 this.formsubmitted=true;
-if(this.form.valid && this.service.agentFormInvalid()){
+if(this.form.valid && this.service.agentFormValid()){
   let {name, surname, phone, email}=this.form.value;
 let formData=new FormData();
   formData.append('name', name);
@@ -66,12 +72,13 @@ let formData=new FormData();
   formData.append('email', email);
   formData.append('phone', phone);
   formData.append('avatar',this.service.agentPhoto(), this.service.agentPhoto().name ); 
-  this.service.postData('agents', formData).subscribe(response=>{
+  this.apiService.postData('agents', formData).subscribe(response=>{
     if(response){
-      this.service.fetchDataWithToken('agents', this.service.myToken).subscribe((response)=>{this.agents.set(response)})
+      this.apiService.fetchDataWithToken('agents', this.apiService.myToken).subscribe((response)=>{this.agents.set(response)})
     }
   });
    this.closeDialog();
+   this.agentFormValid.set(false);
 }
 
 }

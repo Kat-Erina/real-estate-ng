@@ -5,6 +5,7 @@ import { RegionObject } from '../../../core/types';
 import { ListingFilterService } from '../../../core/listing.filter.service'; 
 import { CommonModule } from '@angular/common';
 import { Service } from '../../../core/services.service';
+import { ApiService } from '../../../core/api.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { Service } from '../../../core/services.service';
 })
 export class RegionsFormComponent implements OnInit {
 service=inject(ListingFilterService);
-dataFetchService=inject(Service)
+apiService=inject(ApiService)
 destroyRef=inject(DestroyRef);
 chosenField=this.service.chosenField
 regions=signal<RegionObject []>([]);
@@ -28,7 +29,7 @@ maxPriceInput=this.service.maxPriceInput
 
 
 ngOnInit(): void {
- let subscription= this.dataFetchService.fetchData('regions').subscribe(
+ let subscription= this.apiService.fetchData('regions').subscribe(
     {next:(response)=>{console.log(response);
       this.regions.set(response)
     }})
@@ -50,9 +51,8 @@ toggle(el:any){
 }
 }
 
-handleRegionSubmit=(event:Event, field:string, array:string[])=>{
-  console.log("davachire")
-    event.preventDefault();
+handleRegionSubmit=(field:string, array:string[])=>{
+ 
   this.updateFiltersObjectstorage(field, array)
 }}
 

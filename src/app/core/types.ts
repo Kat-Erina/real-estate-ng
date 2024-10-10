@@ -33,12 +33,12 @@ surname:string
 export interface ListingObject{
   address: string,
   zip_code: string,
-  city_id: number,  
+  city_id: string,  
   price: string,
   bedrooms: string,
   area: string,
   description: string,
-  agent_id: number,
+  agent_id: string,
   is_rental: string,
   image: string,
   

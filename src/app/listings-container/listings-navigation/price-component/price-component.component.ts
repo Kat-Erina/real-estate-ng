@@ -29,14 +29,13 @@ updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
 allowToClear=this.service.allowToClear
 
 
-handlePricesSubmission(event:Event, field:string, array:string[]){
-  event.preventDefault();
+handlePricesSubmission( field:string, array:string[]){
   if(this.minPriceInput()===" " || this.maxPriceInput() === " ")
        { window.alert("გთხოვთ მიუთითოთ ფასები")}
   
 
   else if(Number(this.minPriceInput().replace(",", ""))>=Number(this.maxPriceInput().replace(",", ""))){
-      window.alert("მინიმალური ფასი არ შეიძლება იყოს მაქსიმალურ ფასზე მეტი, გთხოვთ შეასწორეთ!");
+      window.alert("გთხოვთ შეიყვანოთ ვალიდური რიცხვები");
       return
   } else {
 

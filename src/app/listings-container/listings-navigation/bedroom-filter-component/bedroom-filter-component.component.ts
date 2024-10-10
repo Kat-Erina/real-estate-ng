@@ -24,8 +24,8 @@ onChange(e:Event){
 }
 
 
-handleBedroomSelection(event:Event) {
-  event.preventDefault()
+handleBedroomSelection() {
+  // event.preventDefault()
   if(this.selectedBedroom().length===0){
   window.alert("გთხოვთ მიუთითოთ საძინებლების რაოდენობა");
  
