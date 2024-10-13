@@ -9,7 +9,7 @@
       </li>
     <li class="filter-item" (click)="toggle('area',  $event)"> <p>ფართობი <i class="fa-solid" [ngClass]="{'fa-chevron-down' :!stateObject['area'], 'fa-chevron-up': stateObject['area']}"></i></p>
         </li>
-    <li class="filter-item" (click)="toggle('bedroom',  $event)"> <p>საძინებლების რაოდენობა <i class="fa-solid" [ngClass]="{'fa-chevron-down' :!stateObject['bedroom'], 'fa-chevron-up': stateObject['bedroom']}"></i></p>
+    <li class="filter-item" (click)="toggle('bedrooms',  $event)"> <p>საძინებლების რაოდენობა <i class="fa-solid" [ngClass]="{'fa-chevron-down' :!stateObject['bedroom'], 'fa-chevron-up': stateObject['bedroom']}"></i></p>
        </li>
     </ul>
    </div>
@@ -22,6 +22,6 @@
    @if(chosenField()==='region'){<app-regions-form></app-regions-form>}
    @if(chosenField()==='prices'){<app-price-component></app-price-component>}
    @if(chosenField()==='area'){<app-area-container></app-area-container>}
-   @if(chosenField()==='bedroom'){<app-bedroom-filter-component></app-bedroom-filter-component>}
+   @if(chosenField()==='bedrooms'){<app-bedroom-filter-component></app-bedroom-filter-component>}
    
    

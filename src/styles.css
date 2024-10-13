@@ -6,13 +6,7 @@
 
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-    main{
-        width: 100%;
-        border:1px solid blue;
-        display: flex;
-position: relative;
-        
-    }
+
 
 
    .region-form, .prices-form, .area-form, .bedroom-form{

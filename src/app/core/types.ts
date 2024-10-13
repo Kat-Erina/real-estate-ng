@@ -13,7 +13,7 @@ export interface FiletersObject{
 regions:string[],
 price_range:string[],
 area:string[],
-bedroom:""
+bedrooms:""
 }
 export interface Agent{
   id: Number,

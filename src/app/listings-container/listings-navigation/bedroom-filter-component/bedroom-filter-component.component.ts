@@ -13,7 +13,9 @@ export class BedroomFilterComponentComponent {
   allowToClear=this.service.allowToClear
   chosenField=this.service.chosenField
   selectedBedroom=this.service.selectedBedroom;
-  updateFiltersObjectstorage=this.service.updateFiltersObjectstorage
+  updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
+  listings=this.service.listings;
+  filteringListings=this.service.filteringListings;
   @ViewChild('bedroom') bedroom!: ElementRef
 
 
@@ -31,7 +33,7 @@ handleBedroomSelection() {
  
 } 
 else if(!Number(this.selectedBedroom())){window.alert("გთხოვთ მიუთითეთ ციფრი")}
-else {this.updateFiltersObjectstorage('bedroom', this.selectedBedroom());
+else {this.updateFiltersObjectstorage('bedrooms', this.selectedBedroom());
 }
 }
 }

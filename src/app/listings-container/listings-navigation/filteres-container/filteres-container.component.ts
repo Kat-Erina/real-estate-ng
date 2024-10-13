@@ -24,7 +24,7 @@ allowToClear=this.service.allowToClear
 filteresObj=signal<FiletersObject>({regions:[],
   price_range:[],
   area:[],
-  bedroom:""});
+  bedrooms:""});
 
 
 
@@ -35,12 +35,12 @@ if(this.fetchedObject){
      this.selectedPricesarray.set(parsedObject.price_range) ;
       this.selectedRegionsarray.set(parsedObject.regions);
       this.selectedAreaArrays.set(parsedObject.area)
-      this.selectedBedroom.set(parsedObject.bedroom);
+      this.selectedBedroom.set(parsedObject.bedrooms);
       }
     else {this.filteresObj.set({regions:[],
       price_range:[],
       area:[],
-      bedroom:""})    
+      bedrooms:""})    
   }
    }
 

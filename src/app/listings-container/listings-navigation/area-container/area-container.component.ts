@@ -19,11 +19,14 @@ minimumAreaArray=minimumAreaArray;
 maximumAreaArray=maximumAreaArray;
 
 selectedAreaArrays=this.service.selectedAreaArrays;
+listings=this.service.listings;
+filteringListings=this.service.filteringListings;
 handleClickeventLeft=this.service.handleClickeventLeft
 handleClickeventRight=this.service.handleClickeventRight;
 updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
 allowToClear=this.service.allowToClear
-chosenField=this.service.chosenField
+chosenField=this.service.chosenField;
+
 handleAreasSubmission( field:string, array:string[]){
   if(this.minAreaInput()===" " || this.maxAreaInput() === " ")
     window.alert("გთხოვთ მიუთითოთ ფართობი")

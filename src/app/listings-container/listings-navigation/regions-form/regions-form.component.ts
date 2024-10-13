@@ -25,7 +25,10 @@ selectedRegionsarray=this.service.selectedRegionsarray;
 allowToClear=this.service.allowToClear
 updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
 minPriceInput=this.service.minPriceInput;
-maxPriceInput=this.service.maxPriceInput
+maxPriceInput=this.service.maxPriceInput;
+
+listings=this.service.listings;
+filteringListings=this.service.filteringListings;
 
 
 ngOnInit(): void {

@@ -26,7 +26,10 @@ selectedPricesarray=this.service.selectedPricesarray;
 handleClickeventLeft=this.service.handleClickeventLeft;
 handleClickeventRight=this.service.handleClickeventRight;
 updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
-allowToClear=this.service.allowToClear
+allowToClear=this.service.allowToClear;
+
+listings=this.service.listings;
+filteringListings=this.service.filteringListings;
 
 
 handlePricesSubmission( field:string, array:string[]){
