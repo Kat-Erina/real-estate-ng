@@ -17,12 +17,17 @@ export class ListingFilterService{
     allowToClear=signal<boolean>(false);
     listings=signal([]);
     filteringListings=signal([]);
+    bedroomsPreviousData=signal([]);
+    areaPreviousData=signal([]);
+    pricePreviousData=signal([]);
+    regionsPreviousData=signal([]);
 stateObject:{[key:string]:boolean}= {
 region:false,
 prices:false,
 area:false,
 bedrooms:false
 }
+fetchedFilteredObject=signal({})
 
 
 
@@ -70,16 +75,18 @@ handleClickeventRight(e:Event, maxInput:WritableSignal<string>, array:WritableSi
 
 
 updateFiltersObjectstorage(field:string, array:string[]|string){
-    let updatedObj={regions:[],
-            price_range:[],
-            area:[],
-            bedrooms:""}
+    // let updatedObj={regions:[],
+    //         price_range:[],
+    //         area:[],
+    //         bedrooms:""}
+    let updatedObj={}
 
     let obj=window.localStorage.getItem('savedObject');
         if(obj){
             let fetchedObj= JSON.parse(obj)
             updatedObj={...fetchedObj, [field]:array}
-            console.log(array, field)
+            // console.log(array, field)
+            console.log(updatedObj)
          window.localStorage.setItem('savedObject',JSON.stringify(updatedObj))
     }
     else {
@@ -89,51 +96,7 @@ updateFiltersObjectstorage(field:string, array:string[]|string){
         window.localStorage.setItem('savedObject',JSON.stringify(updatedObj));
 
     }
-    //  this.filteringListings=this.listings();
-    console.log(array)
-    if(field==='bedrooms'){
-        let newListingsarray=this.listings().filter((el:any)=>{
-            console.log(el[field])
-           return el[field]==array});
-            this.filteringListings.set(newListingsarray)
-            console.log(this.filteringListings())
-            console.log(newListingsarray)
-    }
-    else if(field==='area'){
-       let [minArea, maxarea]=array;
-       console.log(minArea, maxarea);
-       let newListingsarray=this.listings().filter((el:any)=>{
-        console.log(el[field])
-       return el[field][0]==minArea || el[field][0]>minArea && el[field][1]<maxarea || el[field][1]==maxarea});
-        this.filteringListings.set(newListingsarray)
-        console.log(this.filteringListings())
-        console.log(newListingsarray)
-    }
-    else if(field==='price'){
-        let [minPrice, maxPice]=array;
-        console.log(minPrice, maxPice);
-        let newListingsarray=this.listings().filter((el:any)=>{
-         console.log(el[field])
-        return el[field][0]==minPrice || el[field][0]>minPrice && el[field][1]<maxPice || el[field][1]==maxPice});
-         this.filteringListings.set(newListingsarray)
-         console.log(this.filteringListings())
-         console.log(newListingsarray)
-     }
-    //  else if(field==='regions'){
-        
-    //     console.log(array);
-    //     console.log(array.length);
-    //     for(let i=0; i<array.length; i++){}
-    // //     let newListingsarray=this.listings().filter((el:any)=>{
-          
-    // //      console.log(field)
-    // //      console.log(el.city.region)
-    // //  });
-    //     //  this.filteringListings.set(newListingsarray)
-    //     //  console.log(this.filteringListings())
-    //     //  console.log(newListingsarray)
-    //  }
-
+   
     
    
 this.allowToClear.set(true)
@@ -143,12 +106,8 @@ this.chosenField.set("");
 
 
 
-// filterListings(name:string, data:any[]){
-//  console.log(name);
-//  if(name==="bedrooms"){
-    
-//  }
-// }
+
+
 
 
 

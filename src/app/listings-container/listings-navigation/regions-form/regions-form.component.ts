@@ -29,6 +29,7 @@ maxPriceInput=this.service.maxPriceInput;
 
 listings=this.service.listings;
 filteringListings=this.service.filteringListings;
+regionsPreviousData=this.service.regionsPreviousData
 
 
 ngOnInit(): void {
@@ -55,7 +56,14 @@ toggle(el:any){
 }
 
 handleRegionSubmit=(field:string, array:string[])=>{
+  this.regionsPreviousData.set(this.filteringListings());
+  console.log('regions previous data', this.regionsPreviousData())
+const filteredListingsWithRegions = this.filteringListings().filter((listing:any) => 
+  array.includes(listing.city.region.name)
  
+);
+this.filteringListings.set(filteredListingsWithRegions)
+console.log(this.filteringListings())
   this.updateFiltersObjectstorage(field, array)
 }}
 

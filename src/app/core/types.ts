@@ -45,3 +45,16 @@ export interface ListingObject{
   region_id: number,
   
 }
+
+export interface ReceivedListingObject{
+  address: string,
+area:number,
+bedrooms:number,
+city:{id:number, name:string, region_id:number, region:{id:number, name:string}},
+city_id:number,
+id:number
+image:string
+is_rental:number
+price:number
+zip_code:string
+}

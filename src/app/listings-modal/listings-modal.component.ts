@@ -147,7 +147,7 @@ if(this.form.valid && this.formInvalid()){
     formData.append('is_rental', is_rental);
     formData.append('image',this.cityService.listingImage(), this.cityService.listingImage().name);
     formData.append('region_id', region_id);
-    this.apiService.postData('real-estathhes', formData).subscribe(
+    this.apiService.postData('real-estates', formData).subscribe(
       (response)=>{
       console.log(response)},
       (error:HttpErrorResponse)=>{console.log(error)}

@@ -3,6 +3,7 @@ import { minimumPricesArray, maximumPricesArray } from '../../../core/data-array
 import { ListingFilterService } from '../../../core/listing.filter.service'; 
 import { MinimumItemComponent } from './minimum-item/minimum-item.component';
 import { MaximumItemComponent } from './maximum-item/maximum-item.component';
+import { min } from 'rxjs';
 
 @Component({
   selector: 'app-price-component',
@@ -21,6 +22,7 @@ maximumPricesArray=maximumPricesArray;
 minPriceInput=this.service.minPriceInput
 maxPriceInput=this.service.maxPriceInput;
 selectedPricesarray=this.service.selectedPricesarray;
+pricePreviousData=this.service.pricePreviousData;
 
 
 handleClickeventLeft=this.service.handleClickeventLeft;
@@ -41,9 +43,16 @@ handlePricesSubmission( field:string, array:string[]){
       window.alert("გთხოვთ შეიყვანოთ ვალიდური რიცხვები");
       return
   } else {
-
-     this.updateFiltersObjectstorage(field, array)
-    
+  const minPrice = Number(this.minPriceInput().split(",").join(""));
+  const maxPrice = Number(this.maxPriceInput().split(",").join(""));
+  this.pricePreviousData.set(this.filteringListings());
+console.log('price Previous data', this.pricePreviousData())
+   let newarray=this.filteringListings().filter((listing:any)=>{
+  return (listing.price >= minPrice && listing.price <= maxPrice) 
+    })
+    this.filteringListings.set(newarray);
+    console.log(this.filteringListings())
+    this.updateFiltersObjectstorage(field, array)
   }
 }
 

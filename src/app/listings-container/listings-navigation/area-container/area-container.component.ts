@@ -21,6 +21,8 @@ maximumAreaArray=maximumAreaArray;
 selectedAreaArrays=this.service.selectedAreaArrays;
 listings=this.service.listings;
 filteringListings=this.service.filteringListings;
+areaPreviousData=this.service.areaPreviousData
+// previousData=this.service.previousData;
 handleClickeventLeft=this.service.handleClickeventLeft
 handleClickeventRight=this.service.handleClickeventRight;
 updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
@@ -34,8 +36,18 @@ handleAreasSubmission( field:string, array:string[]){
       window.alert("გთხოვთ შეიყვანოთ ვალიდური რიცხვები");
       return
   } else {
+   
+const minArea = Number(this.minAreaInput());
+const maxArea = Number(this.maxAreaInput());
 
-     this.updateFiltersObjectstorage(field, array)
+this.areaPreviousData.set(this.filteringListings());
+console.log('area data', this.areaPreviousData())
+let newarray=this.filteringListings().filter((listing:any)=>{
+  return (listing.area >= minArea && listing.area <= maxArea) 
+    })
+   console.log(newarray)
+    this.filteringListings.set(newarray)
+    this.updateFiltersObjectstorage(field, array)
   }
 }
 

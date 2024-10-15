@@ -1,9 +1,9 @@
 <div class="filters-container">
   <ul>
-    <li class="item" *ngIf="selectedRegionsarray().length!=0">{{selectedRegionsarray()}} <span (click)="clearSelectedfilter($event, 'regions', selectedRegionsarray)">x</span></li>
-   <li class="item"*ngIf="selectedPricesarray().length>1">{{selectedPricesarray()[0]}} - {{selectedPricesarray()[1]}} <span (click)="clearSelectedfilter($event, 'price_range', selectedPricesarray)"  >x</span></li>
-<li class="item" *ngIf="selectedAreaArrays().length>1">{{selectedAreaArrays()[0] }} - {{selectedAreaArrays()[1]}} <span (click)="clearSelectedfilter($event, 'area', selectedAreaArrays)" >x</span></li>   
-<li class="item" *ngIf="selectedBedroom().length!=0">{{selectedBedroom()}} <span (click)="clearSelectedfilter($event, 'bedroom', selectedBedroom)">x</span></li>
+    <li class="item" *ngIf="selectedRegionsarray().length!=0">{{selectedRegionsarray()}} <span (click)="clearSelectedfilter($event, 'regions', selectedRegionsarray)" data-value="regions">x</span></li>
+   <li class="item"*ngIf="selectedPricesarray().length===2">{{selectedPricesarray()[0]}} - {{selectedPricesarray()[1]}} <span (click)="clearSelectedfilter($event, 'price_range', selectedPricesarray)" data-value="price_range" >x</span></li>
+<li class="item" *ngIf="selectedAreaArrays().length===2">{{selectedAreaArrays()[0] }} - {{selectedAreaArrays()[1]}} <span (click)="clearSelectedfilter($event, 'area', selectedAreaArrays)" data-value="area" >x</span></li>   
+<li class="item" *ngIf="selectedBedroom().length!=0">{{selectedBedroom()}} <span (click)="clearSelectedfilter($event, 'bedrooms', selectedBedroom)" data-value="bedrooms">x</span></li>
  <li class="item" *ngIf="allowToClear()" (click)="clearAll()">გასუფთავება</li>
 </ul>
 </div>
