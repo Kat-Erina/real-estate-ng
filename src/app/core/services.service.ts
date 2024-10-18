@@ -20,24 +20,16 @@ listingImageValidType=signal(false);
 
 
 openAgentModal(){
-  this.agentDialogOpen=true;
-  let dialogRef=this.dialog.open(AgentModalComponent, {
-        height: '400px',
-          width: '600px',
-        
-  })
-  dialogRef.afterClosed().subscribe(() => {
-      this.agentDialogOpen=false;
-    });}
+this.agentDialogOpen=true;
+let dialogRef=this.dialog.open(AgentModalComponent, {
+    height: '400px',
+    width: '600px',
+      
+})
+dialogRef.afterClosed().subscribe(() => {
+    this.agentDialogOpen=false;
+  });}
 
-    updateInfoStorage(param:string,form: FormGroup, information:any,localstorageName:string){
-    let data=localStorage.getItem(localstorageName);
-
-if(data!=null){
-  let updatedData=JSON.parse(data);
-  let updatedInformation={...updatedData, [param]:form.get(param)?.value}
-  localStorage.setItem(localstorageName, JSON.stringify(updatedInformation))
-} }
  
 uploadAgentPhoto(e:Event){
 const target=(e.target as HTMLInputElement);
@@ -68,7 +60,7 @@ if(allowedTypes.includes(target.files[0].type)){
 
 const reader = new FileReader();
 reader.onload = () => {
-  const listingImageString=reader.result as string;
+const listingImageString=reader.result as string;
 this.previewListingPhoto.set(listingImageString)
 }
 reader.readAsDataURL(target.files[0]);

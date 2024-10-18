@@ -4,8 +4,6 @@ import { Service } from '../core/services.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AddedAgent } from '../core/types';
-import { tap } from 'rxjs';
-import { ListingFilterService } from '../core/listing.filter.service';
 import { ApiService } from '../core/api.service';
 
 
@@ -38,8 +36,6 @@ ngOnInit(): void {
   avatar:new FormControl('', Validators.required),
 })
 
-
-
 let subscription=this.form.valueChanges.subscribe((updatedValues) => {
   this.agentInfo = { ...this.agentInfo, ...updatedValues };
 });
@@ -51,7 +47,6 @@ this.destroyRef.onDestroy(()=>{subscription.unsubscribe()})
 @ViewChild('fileInput') fileInput!:ElementRef;
 
 uploadAgentPhoto(){
-console.log( this.form.controls['avatar'].invalid)
   this.fileInput.nativeElement.click()
   }
 closeDialog() {
@@ -61,8 +56,6 @@ closeDialog() {
 
 }
 postAgentInfo(){
-  console.log('raghac')
-  console.log(this.service.agentFormValid())
 this.formsubmitted=true;
 if(this.form.valid && this.service.agentFormValid()){
   let {name, surname, phone, email}=this.form.value;
@@ -72,11 +65,14 @@ let formData=new FormData();
   formData.append('email', email);
   formData.append('phone', phone);
   formData.append('avatar',this.service.agentPhoto(), this.service.agentPhoto().name ); 
-  this.apiService.postData('agents', formData).subscribe(response=>{
-    if(response){
-      this.apiService.fetchDataWithToken('agents', this.apiService.myToken).subscribe((response)=>{this.agents.set(response)})
-    }
-  });
+  this.apiService.postData('agents', formData).subscribe(
+    {next:response=>{
+      if(response){
+        this.apiService.fetchDataWithToken('agents', this.apiService.myToken).subscribe((response)=>{this.agents.set(response)})
+      }
+    },
+    error:(error:Error)=>{console.log(error.message)},
+   });
    this.closeDialog();
    this.agentFormValid.set(false);
 }

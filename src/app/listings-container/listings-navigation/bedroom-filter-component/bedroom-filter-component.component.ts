@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild, viewChild } from '@angular/core';
-import { ListingFilterService } from '../../../core/listing.filter.service'; 
+import {  Component, ElementRef, inject, OnInit, ViewChild, viewChild } from '@angular/core';
+import { MainService } from '../../../core/main-service.service'; 
+import { ReceivedListingObject } from '../../../core/types';
 
 @Component({
   selector: 'app-bedroom-filter-component',
@@ -9,42 +10,31 @@ import { ListingFilterService } from '../../../core/listing.filter.service';
   styleUrl: './bedroom-filter-component.component.css'
 })
 export class BedroomFilterComponentComponent {
-  service=inject(ListingFilterService);
+  service=inject(MainService);
   allowToClear=this.service.allowToClear
   chosenField=this.service.chosenField
   selectedBedroom=this.service.selectedBedroom;
+  stateObject=this.service.stateObject;
   updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
   listings=this.service.listings;
   filteringListings=this.service.filteringListings;
-  bedroomsPreviousData=this.service.bedroomsPreviousData;
   @ViewChild('bedroom') bedroom!: ElementRef
 
-
-onChange(e:Event){
-  e.preventDefault()
+  handleBedroomSelection(e:Event){ 
   const inputValue=this.bedroom.nativeElement.value;
+  console.log(inputValue)
   this.selectedBedroom.set(inputValue)
-}
-
-
-handleBedroomSelection() {
-  console.log('bedroom')
-  // event.preventDefault()
+   e.preventDefault()
   if(this.selectedBedroom().length===0){
   window.alert("გთხოვთ მიუთითოთ საძინებლების რაოდენობა");
  
 } 
 else if(!Number(this.selectedBedroom())){window.alert("გთხოვთ მიუთითეთ ციფრი")}
 else {
-this.bedroomsPreviousData.set(this.filteringListings());
-console.log('previous data', this.bedroomsPreviousData())
-  console.log(this.filteringListings())
-let newArray=this.filteringListings().filter((el:any)=>{
-//  console.log(this.selectedBedroom())
-  return el.bedrooms==this.selectedBedroom()});
-console.log(newArray)
+
+let newArray=this.filteringListings().filter((el:ReceivedListingObject)=>{
+  return el.bedrooms==Number(this.selectedBedroom())});
 this.filteringListings.set(newArray)
-console.log('currentdata', this.filteringListings())
 this.updateFiltersObjectstorage('bedrooms', this.selectedBedroom());
 }
 }

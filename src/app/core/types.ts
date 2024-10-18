@@ -10,7 +10,7 @@ export interface CityObject{
     }
 
 export interface FiletersObject{
-regions:string[],
+region:string[],
 price_range:string[],
 area:string[],
 bedrooms:""

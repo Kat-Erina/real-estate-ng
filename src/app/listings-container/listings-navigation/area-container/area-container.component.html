@@ -3,19 +3,18 @@
 <form class="area-selection-form">
     <div class="area-inputs-container">
         <label for="min-area"></label>
-      <div class="input-container input-container-1"><input type="text" [value]="minAreaInput()" name="min-area" class="area-input" placeholder="დან">
+      <div class="input-container input-container-1"><input  type="text" [value]="areaService.minArea()" name="min-area" class="area-input" placeholder="დან">
     <span>მ²</span>
 </div>
         <label for="max-area" ></label>
-       <div class="input-container"><input id="1" [value]="maxAreaInput()" type="text" name="max-area" class="area-input" placeholder="მდე"><span>მ²</span></div> 
-       
-    </div>
+       <div class="input-container"><input id="1" [value]="areaService.maxArea()" type="text" name="max-area" class="area-input" placeholder="მდე"><span>მ²</span></div> 
+        </div>
     <div class="area-options">
         <div class="area-option-first">
             <p>მინ. ფართობი</p>
             <ul class="min-area-list">
                 @for(area of minimumAreaArray; track area){
-                    <app-minimum-area-item [area]="area" (click)="handleClickeventLeft($event, minAreaInput, selectedAreaArrays, maxAreaInput)"></app-minimum-area-item>
+                    <app-minimum-area-item [area]="area" ></app-minimum-area-item>
                 }
                
         </ul>
@@ -24,7 +23,7 @@
             <ul class="max-area-list">
                 <p>მაქს. ფართობი</p>
                 @for(area of maximumAreaArray; track area){
-                    <app-minimum-area-item [area]="area" (click)="handleClickeventRight($event, maxAreaInput, selectedAreaArrays, minAreaInput)" ></app-minimum-area-item>
+                    <app-maximum-area-item [area]="area" ></app-maximum-area-item>
                 }
                
         </ul>
@@ -32,5 +31,5 @@
              </div>
    
 </form>
-<button (click)="handleAreasSubmission('area',selectedAreaArrays())" class="select-area-btn">არჩევა</button>
+<button (click)="handleAreasSubmission('area')" class="select-area-btn">არჩევა</button>
 </section>

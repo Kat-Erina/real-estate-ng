@@ -4,11 +4,11 @@
     <div class="price-inputs-container">
         <label for="min-price"></label>
       <div class="input-container input-container-1"><input id=
-        "0"[value]="minPriceInput()" type="text" name="min-price" class="price-input price-input-1" placeholder="დან">
+        "0"[value]="priceService.minPrice()" type="text" name="min-price" class="price-input price-input-1" placeholder="დან">
     <span>₾</span>
 </div>
         <label for="max-price" ></label>
-       <div class="input-container"><input id="1" [value]="maxPriceInput()" type="text" name="max-price" class="price-input" placeholder="მდე"><span>₾</span></div> 
+       <div class="input-container"><input id="1" [value]="priceService.maxPrice()" type="text" name="max-price" class="price-input" placeholder="მდე"><span>₾</span></div> 
        
     </div>
     <div class="price-options">
@@ -16,7 +16,7 @@
             <p>მინ. ფასი</p>
             <ul class="min-price-list">
                 @for(price of minimumPricesArray; track price){
-                    <app-minimum-item (click)="handleClickeventLeft($event, minPriceInput, selectedPricesarray, maxPriceInput)" [price]="price"></app-minimum-item>
+                    <app-minimum-item  [price]="price"></app-minimum-item>
                 }
                
         </ul>
@@ -25,7 +25,7 @@
             <ul class="max-price-list">
                 <p>მაქს. ფასი</p>
                 @for(price of maximumPricesArray; track price){
-                    <app-maximum-item [price]="price" (click)="handleClickeventRight($event, maxPriceInput, selectedPricesarray, minPriceInput)"></app-maximum-item>
+                    <app-maximum-item [price]="price"></app-maximum-item>
                 }
                
         </ul>

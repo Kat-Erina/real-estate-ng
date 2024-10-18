@@ -1,6 +1,6 @@
 import { Component, inject, Input, input } from '@angular/core';
 import { RegionObject } from '../../../../core/types';
-import { ListingFilterService } from '../../../../core/listing.filter.service';
+import { MainService } from '../../../../core/main-service.service';
 
 @Component({
   selector: 'app-region-checkbox',
@@ -11,7 +11,7 @@ import { ListingFilterService } from '../../../../core/listing.filter.service';
 })
 export class RegionCheckboxComponent {
   @Input() region!:RegionObject;
-  service=inject(ListingFilterService);
+  service=inject(MainService);
   selectedRegionsarray=this.service.selectedRegionsarray;
     isChecked=false;
 }

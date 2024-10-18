@@ -1,4 +1,4 @@
-<section  class="listings-container" >
+<section  class="listings-container" [ngClass]="{'blur': cityService.agentDialogOpen}">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <h1>ლისტინგის დამატება</h1>
         <div class="type">
