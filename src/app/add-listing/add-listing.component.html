@@ -1,4 +1,4 @@
-<section  class="listings-container" [ngClass]="{'blur': cityService.agentDialogOpen}">
+<section *ngIf="!listingFormSubmitted()"  class="listings-container" [ngClass]="{'blur': cityService.agentDialogOpen}">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <h1>ლისტინგის დამატება</h1>
         <div class="type">
@@ -106,3 +106,4 @@
     </form>
  
 </section>
+<section *ngIf="listingFormSubmitted()"><p>ლისტინგ წარმატებით დაემატა</p></section>

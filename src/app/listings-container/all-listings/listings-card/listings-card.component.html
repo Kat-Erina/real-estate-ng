@@ -1,0 +1,25 @@
+<section>
+    <section>
+        <div>
+            <img [src]="listing.image" [alt]="listing.city.name">
+            <small></small>
+        </div>
+        <div>
+        <h1>{{listing.price}} ₾</h1> 
+        <p>  <i class="fa-solid fa-location-pin"></i> {{listing.city.name}}, {{listing.address}}</p>
+    
+     <div>
+        <ul>
+         
+            <li><i class="fa-solid fa-bed"></i>{{listing.bedrooms}} </li>
+        <li>
+         <i class="fa-solid fa-chart-area"></i> {{listing.area}} მ2
+         
+        </li>
+        <li><i class="fa-solid fa-location-crosshairs"></i> {{listing.zip_code}}</li>
+        <li></li></ul>
+        </div>
+  </div>
+    </section>
+</section>
+

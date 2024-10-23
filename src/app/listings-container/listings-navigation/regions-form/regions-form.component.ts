@@ -55,9 +55,8 @@ toggle(el:Event){
 
 handleRegionSubmit=(field:string, array:string[])=>{
   this.selectedRegionsarray.set(this.array());
-  
-const filteredListingsWithRegions = this.filteringListings().filter((listing:ReceivedListingObject) => 
-  array.includes(listing.city.region.name)
+  const filteredListingsWithRegions = this.filteringListings().filter((listing:ReceivedListingObject) => 
+array.includes(listing.city.region.name)
  
 );
 this.filteringListings.set(filteredListingsWithRegions)

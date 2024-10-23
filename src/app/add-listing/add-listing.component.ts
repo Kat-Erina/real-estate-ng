@@ -49,12 +49,15 @@ region_id:0
    
 
 ngOnInit(): void {
+
 // localStorage.clear()
 let fetchedData=localStorage.getItem('listingInfo');
+this.cityService.previewListingPhoto.set(''),
+this.cityService.listingImageValidType.set(false)
 if(fetchedData!=null){
 this.listingInfo=JSON.parse(fetchedData);
 }
-localStorage.setItem('listingInfo', JSON.stringify(this.listingInfo))
+
 
 this.form=this.formBuilder.group({
 address:[this.listingInfo.address, [Validators.required, Validators.minLength(2)]],
@@ -63,7 +66,7 @@ city_id:[this.listingInfo.city_id, Validators.required],
 price:[this.listingInfo.price, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
 area:[this.listingInfo.area, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
 bedrooms:[this.listingInfo.bedrooms, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-description:[this.listingInfo.description, [Validators.required, Validators.pattern(/^([a-zA-Zა-ჰ]+(\s+|$)){5,}$/)]],
+description:[this.listingInfo.description, [Validators.required, Validators.pattern(/^(?=.*[a-zA-Z])[a-zA-Z0-9ა-ჰ]+(?:\s+[a-zA-Z0-9ა-ჰ]+){4,}$/gm)]],
 agent_id:[this.listingInfo.agent_id, Validators.required],
 is_rental:[this.listingInfo.is_rental, Validators.required],
 image:["", Validators.required],
@@ -88,7 +91,7 @@ this.cities.set(response)
 error:(error:Error)=>console.log(error.message)
     })
 
-let agentsFetch= this.apiService.fetchDataWithToken('agents', this.apiService.myToken).subscribe(
+let agentsFetch= this.apiService.fetchDataWithToken('agents').subscribe(
   {next:(response)=>{this.agents.set(response)},
   error:(error:Error)=>console.log(error.message)}
 )

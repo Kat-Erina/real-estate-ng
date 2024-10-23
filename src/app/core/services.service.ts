@@ -3,7 +3,6 @@ import { Agent } from "./types";
 import { MatDialog } from "@angular/material/dialog";
 import { AgentModalComponent } from "../agent-modal/agent-modal.component";
 import { allowedTypes } from "./data-array";
-import { FormGroup } from "@angular/forms";
 
 @Injectable({'providedIn':"root"})
 export class Service{

@@ -68,7 +68,7 @@ let formData=new FormData();
   this.apiService.postData('agents', formData).subscribe(
     {next:response=>{
       if(response){
-        this.apiService.fetchDataWithToken('agents', this.apiService.myToken).subscribe((response)=>{this.agents.set(response)})
+        this.apiService.fetchDataWithToken('agents').subscribe((response)=>{this.agents.set(response)})
       }
     },
     error:(error:Error)=>{console.log(error.message)},
