@@ -10,7 +10,8 @@ import { Component, Input } from '@angular/core';
 export class ListingsCardComponent {
 @Input() listing:any;
 
-// handleClick(id:string){
-//   console.log(id)
-// }
+handleClick(id:string){
+  console.log(id);
+  console.log('lala')
+}
 }

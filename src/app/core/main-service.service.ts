@@ -12,6 +12,7 @@ allowToClear=signal<boolean>(false);
 listings=signal([]);
 filteringListings=signal<ReceivedListingObject[]>([]);
 satestoData=signal<ReceivedListingObject[]>([]);
+sliderListings=signal<any[]>([]);
 
 stateObject:{[key:string]:boolean}= {
 region:false,

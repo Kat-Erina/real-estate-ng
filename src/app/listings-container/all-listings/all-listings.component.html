@@ -2,8 +2,8 @@
 <section>
    @if(isBeingLoaded()){ <p>Loading...</p>}
       @if(!isBeingLoaded()){
-   <div *ngFor="let listing of filteringListings()" (click)="handleClick(listing.id)" [routerLink]="'listing.id'">
+   <section *ngFor="let listing of filteringListings()" (click)="handleClick(listing.id)" [routerLink]="'listing.id'">
    <app-listings-card [listing]="listing" ></app-listings-card>
     <br>
-   </div>}
+   </section>}
 </section>

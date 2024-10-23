@@ -1,0 +1,5 @@
+<article>
+    @for(item of sliderListings(); track item.id){
+        <app-listings-card (click)="handleClick(item.id)" [listing]="item"></app-listings-card>
+    }
+</article>
