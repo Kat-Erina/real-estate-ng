@@ -33,6 +33,4 @@ allkeys.forEach((el)=>{
         this.stateObject[target]=!this.stateObject[target];
     }else if(this.stateObject[el])  {this.stateObject[el]=!this.stateObject[el]}
 })
-
-            // return this.chosenField()
             }}

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import {  Component,  inject, signal } from '@angular/core';
 import { minimumPricesArray, maximumPricesArray } from '../../../core/data-array';
 import { MainService } from '../../../core/main-service.service'; 
 import { MinimumItemComponent } from './minimum-item/minimum-item.component';
@@ -27,9 +27,10 @@ selectedPricesarray=this.service.selectedPricesarray;
 updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
 allowToClear=this.service.allowToClear;
 filteringListings=this.service.filteringListings;
+noFilteredListings=this.service.noFilteredListings
 
 
-handlePricesSubmission( field:string, array:string[]){
+handlePricesSubmission( field:string){
 this.minPriceInput.set(this.priceService.minPrice());
 this.maxPriceInput.set(this.priceService.maxPrice());
 this.selectedPricesarray.set([this.minPriceInput(), this.maxPriceInput()]);
@@ -46,7 +47,9 @@ this.selectedPricesarray.set([this.minPriceInput(), this.maxPriceInput()]);
   return (listing.price >= minPrice && listing.price <= maxPrice) 
     })
     this.filteringListings.set(newarray);
-    this.updateFiltersObjectstorage(field, this.selectedPricesarray())
+    this.updateFiltersObjectstorage(field, this.selectedPricesarray());
+    if(newarray.length==0){this.noFilteredListings.set(true);
+    }
   }
 }
 

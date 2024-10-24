@@ -1,10 +1,8 @@
-// import { HttpClient } from '@angular/common/http';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { RegionCheckboxComponent } from './region-checkbox/region-checkbox.component';
 import { ReceivedListingObject, RegionObject } from '../../../core/types';
 import { MainService } from '../../../core/main-service.service'; 
 import { CommonModule } from '@angular/common';
-import { Service } from '../../../core/services.service';
 import { ApiService } from '../../../core/api.service';
 
 
@@ -26,6 +24,7 @@ allowToClear=this.service.allowToClear;
 stateObject=this.service.stateObject
 updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
 filteringListings=this.service.filteringListings;
+noFilteredListings=this.service.noFilteredListings
 
 
 array=signal<string[]>([])
@@ -61,5 +60,6 @@ array.includes(listing.city.region.name)
 );
 this.filteringListings.set(filteredListingsWithRegions)
   this.updateFiltersObjectstorage(field, array)
+ if(filteredListingsWithRegions.length===0){this.noFilteredListings.set(true)}
 }}
 

@@ -1,11 +1,13 @@
-import { Component, DestroyRef, inject, Input, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { ApiService } from '../core/api.service';
+import { ApiService } from '../../../core/api.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../core/confirm-dialog/confirm-dialog.component';
-import { MainService } from '../core/main-service.service';
+import { ConfirmDialogComponent } from '../../../core/confirm-dialog/confirm-dialog.component';
+import { MainService } from '../../../core/main-service.service';
 import { CommonModule } from '@angular/common';
-import { SliderComponent } from '../slider/slider.component';
+import { SliderComponent } from '../../../slider/slider.component';
+import { ReceivedListingObject, FetchedListingObject } from '../../../core/types';
+import { defaultReceivedObject } from '../../../core/types';
 
 @Component({
   selector: 'app-listing-item',
@@ -20,7 +22,7 @@ activatedRoute=inject(ActivatedRoute);
 itemId=signal<any>('');
 apiService=inject(ApiService);
 mainService=inject(MainService);
-item=signal<any>({});
+item=signal<FetchedListingObject>(defaultReceivedObject);
 dialog=inject(MatDialog);
 isDeleted=signal(false);
 deletedItemsArray=signal<string[]>([]);
@@ -32,39 +34,36 @@ filteringListings=this.mainService.filteringListings;
 
 fetchData(name:string){
 let subscribion=this.apiService.fetchDataWithToken(name).subscribe({
-  next:(response)=> {console.log(response),this.item.set(response)},
+  next:(response)=> {this.item.set(response);
+  },
    error:(error:Error)=>{console.log(error)}
 })
 
 this.destroyRef.onDestroy(()=>subscribion.unsubscribe())}
 
 loadallListings(){
-  this.apiService.fetchDataWithToken('real-estates').subscribe(response=>{console.log(response);
-    this.sliderListings.set(response.filter((listing:any)=>listing.id!=Number(this.itemId())));
-    console.log(this.sliderListings())
+ let subscription= this.apiService.fetchDataWithToken('real-estates').subscribe(response=>{
+    this.sliderListings.set(response.filter((listing:ReceivedListingObject)=>listing.id!=Number(this.itemId())));
   })
+
+  this.destroyRef.onDestroy(()=>subscription.unsubscribe())
 }
 ngOnInit(): void {
- 
-// localStorage.clear()
- this.activatedRoute.paramMap.subscribe(
+  this.activatedRoute.paramMap.subscribe(
     {
-    next:(paramMap:ParamMap)=>{this.itemId.set(paramMap.get('id')), console.log('katoo'),
-       console.log(this.itemId()), 
-     this.fetchData(`real-estates/${this.itemId()}`)
+    next:(paramMap:ParamMap)=>{this.itemId.set(paramMap.get('id')),
+       this.fetchData(`real-estates/${this.itemId()}`)
        this.loadallListings();
  }
   })
-
 let fetchedDeletedItems=window.localStorage.getItem('deletedItems');
 
 if(fetchedDeletedItems){
  this.deletedItemsArray.set(JSON.parse(fetchedDeletedItems));
-if(this.deletedItemsArray().includes(this.itemId()))  this.isDeleted.set(true)
+if(this.deletedItemsArray().includes(this.itemId())) this.router.navigate(['']);
    else  this.fetchData(`real-estates/${this.itemId()}`);
 }
 else  this.fetchData(`real-estates/${this.itemId()}`);
-
  }
 
 openConfimDialog(){
@@ -77,7 +76,7 @@ openConfimDialog(){
 dialog.afterClosed().subscribe((result)=>{
   if(result){
    this.isDeleted.set(result)
-    this.apiService.deleteListing(this.itemId()).subscribe({
+   let deletSubscription=this.apiService.deleteListing(this.itemId()).subscribe({
       next:()=>{
        this.deletedItemsArray.set([...this.deletedItemsArray(), this.itemId()])
           window.localStorage.setItem('deletedItems', JSON.stringify(this.deletedItemsArray()))
@@ -88,16 +87,10 @@ dialog.afterClosed().subscribe((result)=>{
     subscribe({
     next:(response)=>{
     this.mainService.listings.set(response);
-    // this.mainService.filteringListings.set(response)  ;
-     },
+    },
   })
 
-  this.destroyRef.onDestroy(()=>subscription.unsubscribe())
-  
-
-  
-}})
+  this.destroyRef.onDestroy(()=>{subscription.unsubscribe(), deletSubscription.unsubscribe()})
+  }})
 }
-
-
 }

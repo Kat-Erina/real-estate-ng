@@ -1,1 +1,1 @@
-<li #maximumPrice (click)="handleClick($event)">{{price}}</li>
+<li #maximumPrice (click)="mainService.handleClick($event, maximumPrice, priceService.maxPrice)">{{price}}</li>

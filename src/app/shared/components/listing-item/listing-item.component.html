@@ -8,7 +8,7 @@
         </div>
         <div>
         <h1>{{item().price}} ₾</h1> 
-        <p><i class="fa-solid fa-location-pin"></i>{{item().city?.name}}, {{item().address}}</p>
+        <p><i class="fa-solid fa-location-pin"></i>{{item().city.name}}, {{item().address}}</p>
     
      <div>
         <ul>
@@ -23,23 +23,23 @@
         </div>
         <div>
 <div>
-    <img [src]="item().agent?.avatar" [alt]="item().agent?.name">
-   <ul><li>{{item().agent?.name}} {{item().agent?.surname}}</li>
+    <img [src]="item().agent.avatar" [alt]="item().agent.name">
+   <ul><li>{{item().agent.name}} {{item().agent.surname}}</li>
    <li></li>აგენტი</ul>
 </div>
 <div>
     <ul>
-        <li><i class="fa-regular fa-envelope"></i>{{item().agent?.email}}</li>
-    <li><i class="fa-solid fa-phone"></i> {{item().agent?.phone}}</li>
+        <li><i class="fa-regular fa-envelope"></i>{{item().agent.email}}</li>
+    <li><i class="fa-solid fa-phone"></i> {{item().agent.phone}}</li>
     </ul>
 </div>
 <button (click)="openConfimDialog()">ლისტინგის წაშლა</button>
         </div>
         </div>
     </section>
+    <hr>
+    <app-slider></app-slider>
 </section>
     <p *ngIf="isDeleted()">ლისტინგი წარმატებით წაიშალა</p>
-    <!-- <section >
-        <div *ngFor="let item of mainService.sliderListings()">item</div>
-    </section> -->
-<app-slider></app-slider>
+
+<!-- <app-slider></app-slider> -->

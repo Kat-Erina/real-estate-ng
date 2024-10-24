@@ -1,5 +1,6 @@
 import { Component, ElementRef, inject, Input, ViewChild } from '@angular/core';
 import { PriceService } from '../priceService.service';
+import { MainService } from '../../../../core/main-service.service';
 
 @Component({
   selector: 'app-maximum-item',
@@ -13,11 +14,7 @@ export class MaximumItemComponent {
 
 priceService=inject(PriceService);
 @ViewChild('maximumPrice') maximumPrice!: ElementRef;
-handleClick(e:Event){
-  const target=e.target as HTMLElement;
-  let content=target.textContent;
-  if(content!=null){
-    this.maximumPrice.nativeElement.value=content;
-    this.priceService.maxPrice.set(content)
-  }}
+mainService=inject(MainService);
+noFilteredListings=this.mainService.noFilteredListings
+
 }

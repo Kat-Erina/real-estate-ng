@@ -1,4 +1,4 @@
-import {  Injectable, signal } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { FiletersObject, ReceivedListingObject } from "./types";
 
 @Injectable({'providedIn':"root"})
@@ -11,15 +11,16 @@ selectedBedroom=signal<string>('')
 allowToClear=signal<boolean>(false);
 listings=signal([]);
 filteringListings=signal<ReceivedListingObject[]>([]);
-satestoData=signal<ReceivedListingObject[]>([]);
-sliderListings=signal<any[]>([]);
-
+// satestoData=signal<ReceivedListingObject[]>([]);
+sliderListings=signal<ReceivedListingObject[]>([]);
+noFilteredListings=signal<boolean>(false);
 stateObject:{[key:string]:boolean}= {
 region:false,
 price_range:false,
 area:false,
 bedrooms:false
-}
+};
+
 
 
 updateFiltersObjectstorage(field:string, array:string[]|string){
@@ -40,6 +41,13 @@ this.allowToClear.set(true)
 this.chosenField.set("");
 }
 
+handleClick(e:Event, elementRef:HTMLLIElement, input:any){
+  const target=e.target as HTMLElement;
+let content=target.textContent;
+  if(content!=null){
+      elementRef.value=Number(content);
+      input.set(content);
+  }}
 
 getFilterCriteria(): FiletersObject | null {
     const filterData = localStorage.getItem('savedObject');
@@ -48,42 +56,39 @@ getFilterCriteria(): FiletersObject | null {
   else return null
   }
 
-  filterListings(sth:ReceivedListingObject[]): void {
-    
-    this.satestoData.set(sth)
+  filterListings(array:ReceivedListingObject[]){
+    this.filteringListings.set(array)
     let filters=this.getFilterCriteria();
     if(filters){
       if(filters.price_range){
-        this.satestoData.set(this.satestoData().filter((listing:ReceivedListingObject) => { 
+        this.filteringListings.set(this.filteringListings().filter((listing:ReceivedListingObject) => { 
     let minPrice=Number(filters.price_range[0].replace(/,/g, ''));
     let maxPrice=Number(filters.price_range[1].replace(/,/g, ''));
     return listing.price >= minPrice && listing.price <= maxPrice;
       }))
-    this.filteringListings.set(this.satestoData())
+     
     }
       if(filters.area){
-        this.satestoData.set(this.satestoData().filter((listing:ReceivedListingObject) => { 
+        this.filteringListings.set(this.filteringListings().filter((listing:ReceivedListingObject) => { 
           return listing.area >= Number(filters.area[0]) && listing.area <= Number(filters.area[1]);
             }))
-            this.filteringListings.set(this.satestoData())
             
           }
            if(filters.bedrooms){
-                    this.satestoData.set(this.satestoData().filter((listing:ReceivedListingObject) => { 
+                    this.filteringListings.set(this.filteringListings().filter((listing:ReceivedListingObject) => { 
                     return listing.bedrooms === Number(filters.bedrooms);
                       }))
-                    this.filteringListings.set( this.satestoData())
                       }
                       if(filters.region){
-                        this.satestoData.set(this.satestoData().filter((listing:ReceivedListingObject) => { 
+                        this.filteringListings.set(this.filteringListings().filter((listing:ReceivedListingObject) => { 
                     return filters.region.includes(listing.city.region.name)
                       }))
-                  
-                        this.filteringListings.set( this.satestoData())
-    }
+                      
+                    }
     else if(Object.keys(filters).length===0){
         this.filteringListings.set(this.listings())
     }
+
 }
 else{this.filteringListings.set(this.listings())}
   

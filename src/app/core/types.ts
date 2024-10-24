@@ -58,3 +58,33 @@ is_rental:number
 price:number
 zip_code:string
 }
+
+export interface FetchedListingObject extends ReceivedListingObject{
+ description:string, 
+ created_at:string,
+ agent:{avatar:string, email:string, id:number, name:string, phone:string, surname:string}
+  }
+
+  export const defaultReceivedObject: FetchedListingObject = {
+    address: '',
+    area: 0,
+    bedrooms: 0,
+    city: {
+      id: 0,
+      name: '',
+      region_id: 0,
+      region: {
+        id: 0,
+        name: ''
+      }
+    },
+    city_id: 0,
+    id: 0,
+    image: '',
+    is_rental: 0,
+    price: 0,
+    zip_code: '',
+    created_at: '', 
+    description:'',
+    agent:{avatar:'', email:'', id:0, name:'', phone:'', surname:''}
+  };

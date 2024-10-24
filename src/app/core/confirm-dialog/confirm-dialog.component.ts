@@ -1,4 +1,3 @@
-import { DialogRef } from '@angular/cdk/dialog';
 import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -16,10 +15,8 @@ export class ConfirmDialogComponent {
 
   closeDialog(){
     this.dialogRef.close(false);
-    console.log('dialog has been clsoed')
-    console.log(this.dialogData)
+    }
     
-  }
   confirmdDelete(){
     this.dialogRef.close(true)
   }

@@ -11,6 +11,6 @@ export const routes: Routes = [
         loadComponent:()=>import('./add-listing/add-listing.component').then((comp)=>comp.AddListingComponent)
     }, 
     {path:"card/:id", 
-        loadComponent:()=>import('./listing-item/listing-item.component').then((comp)=>comp.ListingItemComponent)
+        loadComponent:()=>import('./shared/components/listing-item/listing-item.component').then((comp)=>comp.ListingItemComponent)
     }
 ];

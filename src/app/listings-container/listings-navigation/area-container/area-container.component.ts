@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MainService } from '../../../core/main-service.service'; 
 import { minimumAreaArray, maximumAreaArray } from '../../../core/data-array';
 import { MinimumAreaItemComponent } from './minimum-area-item/minimum-area-item.component';
@@ -26,8 +26,8 @@ filteringListings=this.service.filteringListings;
 updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
 allowToClear=this.service.allowToClear
 chosenField=this.service.chosenField;
-stateObject=this.service.stateObject
-
+stateObject=this.service.stateObject;
+noFilteredListings=this.service.noFilteredListings
 
 handleAreasSubmission( field:string){
   this.minAreaInput.set(this.areaService.minArea());
@@ -47,6 +47,7 @@ let newarray=this.filteringListings().filter((listing:ReceivedListingObject)=>{
     })
     this.filteringListings.set(newarray)
     this.updateFiltersObjectstorage(field, this.selectedAreaArrays())
+    if(newarray.length===0){this.noFilteredListings.set(true)}
   }
 }
 

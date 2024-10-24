@@ -1,1 +1,1 @@
-<li #minimumPrice (click)="handleClick($event)">{{price}}</li>
+<li #minimumPrice (click)="mainService.handleClick($event, minimumPrice, priceService.minPrice)">{{price}}</li>

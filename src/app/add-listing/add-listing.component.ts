@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { map } from 'rxjs';
 import { ApiService } from '../core/api.service';
 import { RouterLink } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { AgentModalComponent } from '../agent-modal/agent-modal.component';
 
 
@@ -32,6 +31,8 @@ agents=this.cityService.agents;
 form!:FormGroup;
 listingFormSubmitted=signal<boolean>(false);
 formInvalid=this.cityService.formInvalid;
+listingAdded=signal(false)
+
 @ViewChild('fileInput') fileInput!:ElementRef;
 
 listingInfo:ListingObject={address:'',
@@ -49,8 +50,6 @@ region_id:0
    
 
 ngOnInit(): void {
-
-// localStorage.clear()
 let fetchedData=localStorage.getItem('listingInfo');
 this.cityService.previewListingPhoto.set(''),
 this.cityService.listingImageValidType.set(false)
@@ -117,12 +116,13 @@ return this.agents();
   
   const value=(e.target as HTMLSelectElement).value;
   let regionId=Number(value);
-  this.apiService.fetchCities('cities').pipe(map((response)=>
+ let subscription= this.apiService.fetchCities('cities').pipe(map((response)=>
     response.filter((el)=>el.region_id===regionId)
   )).subscribe({
     next:(response)=>{this.cities.set(response)},
     error:(error:Error)=>console.log(error.message)
   })
+  this.destroyRef.onDestroy(()=>{subscription.unsubscribe()})
 
  }
 
@@ -152,8 +152,7 @@ this.fileInput.nativeElement.click()
 }
 
 onSubmit(){
-  this.listingFormSubmitted.set(true);
-
+  this.listingFormSubmitted.set(true)
 if(this.form.valid && this.formInvalid()){
   alert('გთხოვთ ატვირთოეთ მხოლოდ ფოტო')
 }
@@ -171,10 +170,15 @@ if(this.form.valid && this.formInvalid()){
     formData.append('is_rental', is_rental);
     formData.append('image',this.cityService.listingImage(), this.cityService.listingImage().name);
     formData.append('region_id', region_id);
-    this.apiService.postData('real-estates', formData).subscribe(
-     {next:(response)=>{},
+ let subscription= this.apiService.postData('real-estates', formData).subscribe(
+     {next:(response)=>{
+      this.listingAdded.set(true)
+     },
      error:(error:Error)=>{console.log(error.message)}}
      )
+     this.destroyRef.onDestroy(()=>subscription.unsubscribe())
+    
 }
    }
+   
   }

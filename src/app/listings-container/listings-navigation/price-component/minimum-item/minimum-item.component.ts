@@ -1,5 +1,6 @@
 import { Component, ElementRef, inject, Input, ViewChild } from '@angular/core';
 import { PriceService } from '../priceService.service';
+import { MainService } from '../../../../core/main-service.service';
 
 @Component({
   selector: 'app-minimum-item',
@@ -12,16 +13,7 @@ export class MinimumItemComponent {
 @Input() price!:string
 priceService=inject(PriceService);
 @ViewChild('minimumPrice') minimumPrice!: ElementRef;
+mainService=inject(MainService);
+noFilteredListings=this.mainService.noFilteredListings
 
-handleClick(e:Event){
- 
-
-  const target=e.target as HTMLElement;
-  console.log(target)
-  let content=target.textContent;
-  console.log(content)
-    if(content!=null){
-        this.minimumPrice.nativeElement.value=content;
-        this.priceService.minPrice.set(content)
-    }
-}}
+}

@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-// import { HeaderComponent } from './listings-container/header/header.component';
 import { ListingsContainerComponent } from './listings-container/listings-container.component';
 import { AddListingComponent } from './add-listing/add-listing.component';
 import { HeaderComponent } from './listings-container/header/header.component';

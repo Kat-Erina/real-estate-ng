@@ -1,4 +1,4 @@
-import {  Component, ElementRef, inject, OnInit, ViewChild, viewChild } from '@angular/core';
+import {  Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { MainService } from '../../../core/main-service.service'; 
 import { ReceivedListingObject } from '../../../core/types';
 
@@ -18,11 +18,11 @@ export class BedroomFilterComponentComponent {
   updateFiltersObjectstorage=this.service.updateFiltersObjectstorage;
   listings=this.service.listings;
   filteringListings=this.service.filteringListings;
-  @ViewChild('bedroom') bedroom!: ElementRef
+  @ViewChild('bedroom') bedroom!: ElementRef;
+  noFilteredListings=this.service.noFilteredListings
 
   handleBedroomSelection(e:Event){ 
   const inputValue=this.bedroom.nativeElement.value;
-  console.log(inputValue)
   this.selectedBedroom.set(inputValue)
    e.preventDefault()
   if(this.selectedBedroom().length===0){
@@ -36,6 +36,7 @@ let newArray=this.filteringListings().filter((el:ReceivedListingObject)=>{
   return el.bedrooms==Number(this.selectedBedroom())});
 this.filteringListings.set(newArray)
 this.updateFiltersObjectstorage('bedrooms', this.selectedBedroom());
+if(newArray.length===0){this.noFilteredListings.set(true)}
 }
 }
 }

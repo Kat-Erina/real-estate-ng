@@ -4,10 +4,4 @@ import { Injectable, signal } from "@angular/core";
 export class AreaService {
     minArea=signal('');
     maxArea=signal('');
-    minPrice=signal('');
-    maxPrice=signal('');
-
-
-
-   
 }

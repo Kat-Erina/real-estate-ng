@@ -3,8 +3,6 @@ import { ListingsNavigationComponent } from './listings-navigation/listings-navi
 import { CommonModule } from '@angular/common';
 import { Service } from '../core/services.service';
 import { AllListingsComponent } from './all-listings/all-listings.component';
-import { RouterOutlet } from '@angular/router';
-// import { MainService } from '../core/main-service.service';
 
 @Component({
   selector: 'app-listings-container',
@@ -14,6 +12,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './listings-container.component.css'
 })
 export class ListingsContainerComponent {
-service=inject(Service)
+service=inject(Service);
+
 
 }
