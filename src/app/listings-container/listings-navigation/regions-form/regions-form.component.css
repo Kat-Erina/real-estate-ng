@@ -1,3 +1,8 @@
+.region-form{
+    margin-top: 15px;
+    width: 300px;
+    left:5px
+}
 .regions-selection-form{
     margin-top: 10px;
     display: grid;
@@ -6,4 +11,16 @@
     gap: 10px;
 
 }
+.select-region-btn{
+    font-size: 12px;
+}
 
+@media screen and (min-width:732px) {
+    .region-form{
+        width: 500px;
+    }
+    .select-region-btn{
+        font-size: 14px;
+    }
+    
+}

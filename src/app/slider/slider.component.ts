@@ -17,7 +17,7 @@ router=inject(Router)
 
 
 
-handleClick(id:string){
+handleClick(id:number){
   console.log(this.sliderListings())
 this.router.navigate(['card', id], { replaceUrl: true })
 }

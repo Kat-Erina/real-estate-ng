@@ -1,5 +1,31 @@
 .prices-form{
-   
-    left: 25%;
+margin-top: 15px;
+width: 250px;
+left: 25%;
+max-width: 500px;
    
 }
+
+@media screen and (min-width:500px) {
+  .prices-form{
+      width: 240px;
+       }
+}
+
+
+  @media screen and (min-width:732px){
+      .prices-form{
+        width: 340px; 
+      }
+  }
+  
+  @media screen and (min-width:1400px){
+      .prices-form{
+        width: 500px; 
+      }
+  }
+
+ 
+
+
+

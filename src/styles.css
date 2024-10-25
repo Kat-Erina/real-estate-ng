@@ -5,13 +5,13 @@
 }
 
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {width: 100vw; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 
    .region-form, .prices-form, .area-form, .bedroom-form{
     
-    width: 75vw;
+    /* width: 75vw; */
    background-color: #ffffff;
     
     top:50px;
@@ -35,15 +35,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
-.select-region-btn, .select-area-btn, .select-bedroom-btn{
+.select-region-btn, .select-area-btn, .select-bedroom-btn, .select-price-btn{
     margin-top: 20px;
     width: 77px;
     height: 33px;
     float: right;
     background-color: #F93B1D;
-    color: white;
+    color: rgb(255, 255, 255);
     border: none;
-   
+   font-size: 12px;
  border-radius: 8px;
     align-self: flex-end;
     align-items: center;
@@ -90,7 +90,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .price-option-first ul li, .price-option-second ul li, .area-option-first ul li, .area-option-second ul li{
     padding-top: 10px;
     color: #2D3648;
-    font-size: 13px;
+    font-size: 12px;
+
     }
 
 .price-option-first, .price-option-second, .area-option-first, .area-option-second{
@@ -184,3 +185,28 @@ border: none;}
     border: 1px solid #F93B1D;
     z-index: 1;
   }
+
+
+ 
+  @media screen and (min-width:1600px){
+    body{
+      width: 100%;
+     
+        display: grid;
+       place-items: center;
+      
+        background-color: #45A849;
+        margin: 0;
+    }
+    }
+
+    @media screen and (min-width:732px) {
+      .select-region-btn, .select-area-btn, .select-bedroom-btn, .select-price-btn{
+       font-size: 14px;
+    }
+    .li-item, .price-option-first ul li, .price-option-second ul li, .area-option-first ul li, .area-option-second ul li{
+      font-size: 14px;
+    }
+  
+      
+    }

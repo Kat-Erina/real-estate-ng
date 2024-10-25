@@ -1,8 +1,10 @@
 .bedroom-form{
     padding: 10px;
+    margin-top: 15px;
     width: 200px;
-    left: 45%;
-    /* padding: 24px; */
+    left:55%;
+    width: 150px;
+   
 }
 .bedroom-input{
     border: 1px solid #808A93;
@@ -13,3 +15,49 @@
     width: 30px;
     
 }
+
+@media screen and (min-width:375px) {
+   .bedroom-form{
+      
+        left:calc(100vw - 175px)
+     }
+}
+
+
+@media screen and (min-width:650px) {
+   .bedroom-form{
+      width: 200px;
+      left:69%
+        }
+}
+
+   @media screen and (min-width:732px){
+       .bedroom-form{
+         left:73%
+       }
+   }
+   
+   @media screen and (min-width:800px){
+      .bedroom-form{
+        left:75%
+      }
+  }
+
+   @media screen and (min-width:1000px){
+       .bedroom-form{
+         left:78%
+       }
+   }
+
+   @media screen and (min-width:1200px){
+      .bedroom-form{
+         width: 250px;
+      }
+  }
+
+   @media screen and (min-width:1600px){
+       .bedroom-form{
+         width: 300px;
+       }
+   }
+   

@@ -1,10 +1,26 @@
 header{
     border-bottom: 1px solid #DBDBDB;
- padding: 1.2rem;
+ padding: 1rem;
+ border: 1px solid red;
+ /* background-color: #2cba59; */
+ margin: 0 auto;
 }
 
 header img{
     height: 1rem;
     width: 7rem;
    
+}
+
+/* @media screen and (min-width:800px){
+    header{
+        width:1400px;
+        background-color: blue;
+    }
+    } */
+@media screen and (min-width:1600px){
+header{
+    width:1596px;
+    background-color: aquamarine;
+}
 }
