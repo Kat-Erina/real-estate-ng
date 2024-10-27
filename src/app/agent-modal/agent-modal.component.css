@@ -1,27 +1,29 @@
 .agent-modal-container{
-   
-  
-    background-color: aqua;
-    padding: 20px 10px;
+    padding: 10px;
     display: flex;
-    flex-direction: column;
-  
-   
-}
+    flex-direction: column;  
+ }
+ .custom-dialog{
+    background-color: red;
+ }
 
-h1{font-size: 20px;
+ .mat-mdc-dialog-inner-container mdc-dialog__container{
+    background-color: red;
+ }
+
+h1{font-size: 17px;
+    text-align: center;
    }
    .agent-form{
-    padding: 16px 0;
+    padding-bottom: 15px;
+  
    }
    label{
     font-size: 14px;
     font-weight: bold;
-   
    }
 
    .agent-personal-info, .agent-contact-info, .agent-picture{
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -31,23 +33,44 @@ h1{font-size: 20px;
 
    .agent-picture{
     margin-bottom: 1.4rem;
-   }
+    }
+
+   .upload-agent-photo{height: 100px;
+display: flex;
+align-items: center;}
+
    input{
     margin-top: 0.5rem;
     border: 1px solid #808A93;
     border-radius: 5px;
-    padding: 8px
+    padding: 8px;
+    width: 80%;
    }
 
-   .agent-btns button{
+.agent-btns button{
     padding: 6px 10px;
-    
-    
     border-radius: 10px;
      cursor: pointer;
    
    }
    small{
-    font-size: 10px;
+    font-size: 12px;
    
+}
+
+.fa-check{
+    margin-right: 5px;
+}
+
+@media screen and (min-width:475px) {
+    .agent-personal-info, .agent-contact-info{
+        
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+       }
+
+       input{
+   width: 100%;
+       }
+    
 }

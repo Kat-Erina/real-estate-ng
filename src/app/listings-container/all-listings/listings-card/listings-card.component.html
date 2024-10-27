@@ -1,13 +1,11 @@
 
-        <div>
-            <img [src]="listing.image" [alt]="listing.city.name">
-            <small></small>
-        </div>
-        <div>
+        
+        <img [src]="listing.image" [alt]="listing.city.name" class="listing-image">
+            <div class="main-container">
         <h1>{{listing.price}} ₾</h1> 
         <p>  <i class="fa-solid fa-location-pin"></i> {{listing.city.name}}, {{listing.address}}</p>
     
-     <div>
+     <div class="additional-information">
         <ul>
          
             <li><i class="fa-solid fa-bed"></i>{{listing.bedrooms}} </li>

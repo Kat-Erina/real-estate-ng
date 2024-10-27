@@ -1,18 +1,18 @@
 <section class="agent-modal-container">
-    <h1>დაამატე აგენტი</h1>
+    <h1>აგენტის დამატება</h1>
     <form [formGroup]="form" class="agent-form" (ngSubmit)="postAgentInfo()">
        <div class="agent-personal-info">
         <div class="name-info">
             <label [ngClass]="formsubmitted&& form.controls['name'].invalid?'invalid-description':''">სახელი *</label>
             <br>
             <input  type="text" formControlName="name" >
-            <br> <small [ngClass]="form.controls['name'].dirty? ( form.controls['name'].invalid ? 'invalid-description' :'valid-description') :''">მინიმუმ ორი სიმბოლო</small>
+            <br> <small [ngClass]="form.controls['name'].dirty? ( form.controls['name'].invalid ? 'invalid-description' :'valid-description') :''"><i class="fa-solid fa-check"></i>მინიმუმ ორი სიმბოლო</small>
         </div>
         <div class="surname-info">
             <label  [ngClass]="formsubmitted&& form.controls['surname'].invalid?'invalid-description':''">გვარი *</label>
             <br>
             <input  type="text" formControlName="surname" >
-            <br>    <small [ngClass]="form.controls['surname'].dirty?(form.controls['surname'].invalid?'invalid-description':'valid-description'):''">მინიმუმ ორი სიმბოლო</small>
+            <br>    <small [ngClass]="form.controls['surname'].dirty?(form.controls['surname'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i>მინიმუმ ორი სიმბოლო</small>
         </div>
        </div>
        <div class="agent-contact-info">
@@ -20,12 +20,12 @@
             <label  [ngClass]="formsubmitted&& form.controls['email'].invalid?'invalid-description':''">ელ_ფოსტა *</label>
             <br>
             <input type="email" formControlName="email">
-            <br>    <small  [ngClass]=" form.controls['email'].dirty?(form.controls['email'].invalid?'invalid-description':'valid-description'):''">უნდა მთავრდებოდეს &#64;redberry.ge-ზე</small>
+            <br>    <small  [ngClass]=" form.controls['email'].dirty?(form.controls['email'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i>უნდა მთავრდებოდეს &#64;redberry.ge-ზე</small>
         </div>
         <div class="tel-info">
             <label  [ngClass]="formsubmitted&& form.controls['phone'].invalid?'invalid-description':''">ტელეფონის ნომერი *</label> <br>
             <input  type="tel" formControlName="phone">
-            <br>   <small [ngClass]=" form.controls['phone'].dirty?(form.controls['phone'].invalid?'invalid-description':'valid-description'):''">მხოლოდ რიცხვები</small>
+            <br>   <small [ngClass]=" form.controls['phone'].dirty?(form.controls['phone'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i>მხოლოდ რიცხვები</small>
         </div>
        </div>
        <div class="agent-picture">

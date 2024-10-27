@@ -2,10 +2,13 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* overflow: hidden; */
 }
 
 
-body {width: 100vw; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  /* overflow: hidden; */
+ }
 
 
 
@@ -111,7 +114,7 @@ body {width: 100vw; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif
 }
 
 
-.listing-btns, .agent-btns{
+.agent-btns{
     
   float: right;
   display: flex;
@@ -119,23 +122,22 @@ body {width: 100vw; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif
   
 }
 
-.submit{ background-color: #F93B1D;
-  color: white;
-border: none;}
-.cancel{
-  color: #F93B1D;
-  background-color: white;
-  border:1px solid #F93B1D;
-}
 
-/* styles.css or your component's stylesheet */
+
 .blur {
     filter: blur(2px);
-    pointer-events: none; /* Optional: Prevents interaction with blurred content */
-    /* background-color: red; */
+    pointer-events: none; 
   }
 
 
+
+
+
+.mdc-dialog__surface{
+  background-color: red;
+  scrollbar-width: none;
+  overflow: hidden;
+}
 
   .upload-agent-photo, .upload-listing-photo {
     cursor: pointer; 
@@ -148,11 +150,9 @@ border: none;}
     
   }
   .upload-agent-photo:hover, .upload-listing-photo:hover {
-    background-color: #f0f0f0; /* Example: hover effect */
+    background-color: #f0f0f0; 
   }
-  .agent-picture, .listing-picture{
-    border: 1px solid red;
-  }
+ 
   .agent-photo-upload-input, .listing-photo-upload-input{
     display: none;
     z-index: 0;
@@ -186,17 +186,33 @@ border: none;}
     z-index: 1;
   }
 
+  .submit{ background-color: #F93B1D;
+    color: white;
+  border: none;
+  padding: 7px;
+font-size: 14px;
+border-radius: 10px;
+}
+  .cancel{
+    color: #F93B1D;
+    background-color: white;
+    border:1px solid #F93B1D;
+    font-size: 14px;
+    padding: 7px;
+    border-radius: 10px;
+  }
 
  
   @media screen and (min-width:1600px){
     body{
-      width: 100%;
+      /* width: 100%; */
      
         display: grid;
        place-items: center;
       
         background-color: #45A849;
         margin: 0;
+        /* padding: 0; */
     }
     }
 

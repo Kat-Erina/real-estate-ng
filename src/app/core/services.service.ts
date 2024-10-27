@@ -23,6 +23,9 @@ this.agentDialogOpen=true;
 let dialogRef=this.dialog.open(AgentModalComponent, {
     height: '400px',
     width: '600px',
+    
+      panelClass: 'custom-dialog', // Use your custom class
+    
       
 })
 dialogRef.afterClosed().subscribe(() => {

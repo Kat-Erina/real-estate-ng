@@ -1,0 +1,41 @@
+.all-listings{
+    width:100vw ;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    
+}
+
+.listing-item{
+border-radius:8px;
+border: 1px solid #808A93;
+/* height: 450px; */
+}
+
+.listing-item:hover{
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+     transform: scale(1.02); ;
+}
+
+@media screen and (min-width:430px) {
+    .listing-item{
+        margin: 0 auto;
+        width: 384px;
+        background-color: yellow;
+        }
+    
+}
+
+@media screen and (min-width:600px) {
+    .all-listings{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(384px, 1fr)); 
+        grid-auto-rows: fit-c
+        }
+
+
+    
+}

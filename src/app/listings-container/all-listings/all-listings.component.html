@@ -1,13 +1,13 @@
 
-<section>
+<section class="all-listings">
    @if(isBeingLoaded()){ <p>იტვირთება...</p>}
       @if(!isBeingLoaded()){
-   <section *ngFor="let listing of filteringListings()" (click)="handleClick(listing.id)">
+   <section class="listing-item" *ngFor="let listing of filteringListings()" (click)="handleClick(listing.id)">
    <app-listings-card [listing]="listing" ></app-listings-card>
     <br>
    </section>}
    @if(!isBeingLoaded()&&noDataFound()) {
-      <p>ლისტინგები  არ არის ბაზაში</p>
+      <p class="listing-p">ლისტინგები  არ არის ბაზაში</p>
    }
-   @if(noFilteredListings()){<p>აღნიშნული კრიტერიუმებით ლისტინგი არ არსებობს</p>}
+   @if(noFilteredListings()){<p class="listing-p">აღნიშნული კრიტერიუმებით ლისტინგი არ არსებობს</p>}
 </section>

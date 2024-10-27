@@ -1,42 +1,43 @@
-.listings-container{
-    width: 100vw;
-    height: 100vh;
-    /* position: absolute; */
-    padding: 1.2rem;
+
+.listing-form{
+    padding:20px 10px;
 }
 
-h1{font-size: 20px;
-margin-bottom: 1.2rem;}
+.listing-btns{
+    display: flex;
+    justify-content: end;
+    gap:20px;
+    border-radius: 10px;
+}
+
+  
+h1{font-size: 17px;
+margin-bottom: 1.2rem;
+text-align: center;}
 
 
 .type, .location, .flat-info{
     margin-top: 0.8rem;
     margin-bottom: 3rem;
     font-size: 14px;
-    border:1px solid red;
-   
+    width: 100%;   
+}
+.sell{
+    margin-right: 20px;
 }
  h2{
     font-size: 17px;
     font-weight: 700;
     margin-bottom: 0.4rem;
 }
-/* .type-options{
-    display: flex;
-    flex-direction: row;
- } */
 
  .radio-sell, .radio-rent {
     vertical-align: middle;
   }
   
-
-
 .address-container, .region-city-container, .flat-info-container{
-    border:1px solid rgb(0, 4, 255);
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     gap: 15px;
     padding-top: 1rem;
 }
@@ -49,12 +50,21 @@ input, select, textarea {
     outline: none;
     
    }
-   textarea{
+   
+.upload-listing-photo{
     height: 100px;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
    }
 
-.region-select, .city-select, .address-input, .cost-input, .area-input, .bedrooms-input, .description-input, .agent-select{
+.region-select, .city-select, .address-input, .cost-input, .area-input, .bedrooms-input, .agent-select{
     width: 80%;
+}
+
+.description-input{
+    height: 135px;
+    width: 100%;
 }
 
 
@@ -62,7 +72,6 @@ select{padding: 0;}
 label{font-weight: bold;
 font-size: 14px;}
 .sell, .rent {
-    margin-right: 1rem;
  accent-color: black;
  font-size: 13px;
  width: 15px;
@@ -73,27 +82,16 @@ font-size: 14px;}
 
 small{
     font-size: 10px;
-   
 }
 
 .postal-code-container{
-    width: 50%;
-    max-width: 250px;
-}
-
-/* .zip_code{
     width: 100%;
-    border: 1px solid red;
-} */
+    }
 
-.flat-square-div{
-    border: 1px solid red;
-    /* background-color: blue; */
+.zip_code{
+    width: 50%;
 }
 
-.upload-listing-photo{
-    margin-top: 0.5rem;
-}
 .agent-p{
     font-size: 15px;
     font-weight: bold;
@@ -101,11 +99,46 @@ small{
 }
 
 
-.listing-btns button{
-    padding: 10px 16px;
+@media screen and (min-width:500px) {
+    .region-select, .city-select, .address-input, .cost-input, .area-input, .bedrooms-input, .agent-select{
+        width: 400px
+    }
+    .zip_code{
+        width: 150px
+    }
     
+}
+
+@media screen and (min-width:732px) {
     
-    border-radius: 10px;
-     cursor: pointer;
+      .sell, .rent {
+         font-size: 14px;
+       }
+
+       .zip_code,   .region-select, .city-select, .address-input, .cost-input, .area-input, .bedrooms-input,  .agent-select{
+        width: 360px
+    }
    
-   }
+
+    .listings-container{
+        width: 800px;
+        margin: 0 auto;
+    }
+    small{
+        font-size: 12px;
+    }
+
+    .address-container, .region-city-container, .area-price-container{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .street-container{
+        width: 100%;
+    }
+   
+    .upload-listing-photo{
+        height: 120px;
+       }
+    
+}

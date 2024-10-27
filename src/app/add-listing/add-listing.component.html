@@ -1,5 +1,5 @@
 <section *ngIf="!listingAdded()"  class="listings-container" [ngClass]="{'blur': cityService.agentDialogOpen}">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="listing-form">
         <h1>ლისტინგის დამატება</h1>
         <div class="type">
             <h2>
@@ -15,15 +15,18 @@
         <div class="location">
             <h2>მდებარეობა</h2>
            <div class="address-container">
-            <div><label for="address" [ngClass]="listingFormSubmitted()&& form.controls['address'].invalid?'invalid-description':''">მისამართი <span>*</span></label><br>
+            <div class="street-container"><label for="address" [ngClass]="listingFormSubmitted()&& form.controls['address'].invalid?'invalid-description':''">მისამართი <span>*</span>
+            </label><br>
                 <input class="address-input" formControlName="address"  type="text" >
                 <br>
             <small [ngClass]="form.controls['address'].dirty?(form.controls['address'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i> მინიმუმ 2 სიმბოლო</small>
         </div>
-                <div class="postal-code-container"><label [ngClass]="listingFormSubmitted()&& form.controls['zip_code'].invalid?'invalid-description':''" for="postal-index" class="postal-index">საფოსტო ინდექსი *</label><br>
+                <div class="postal-code-container">
+                    <label [ngClass]="listingFormSubmitted()&& form.controls['zip_code'].invalid?'invalid-description':''" for="postal-index" class="postal-index">საფოსტო ინდექსი *</label><br>
                     <input type="text" class="zip_code" formControlName="zip_code">
                     <br>
-                    <small [ngClass]="form.controls['zip_code'].dirty?(form.controls['zip_code'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i> მხოლოდ ციფრები</small></div>
+                    <small [ngClass]="form.controls['zip_code'].dirty?(form.controls['zip_code'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i> მხოლოდ ციფრები</small>
+                </div>
            </div>
                 <div class="region-city-container">
                     <div class="region-container"><label [ngClass]="listingFormSubmitted() && form.controls['region_id'].invalid?'invalid-description':'valid description'" for="selected-region">რეგიონი</label><br>
@@ -44,6 +47,7 @@
         <div class="flat-info">
             <h2>ბინის დეტალები</h2>
         <div class="flat-info-container">
+          <section class="area-price-container">
             <div class="flat-cost-div">
                 <label [ngClass]="listingFormSubmitted()&& form.controls['price'].invalid?'invalid-description':''" for="cost">ფასი</label>
                 <br>
@@ -57,6 +61,7 @@
                 <input type="text" formControlName="area" class="area-input" >
                 <br>
                 <small [ngClass]="form.controls['area'].dirty?(form.controls['area'].invalid?'invalid-description':'valid-description'):''"><i class="fa-solid fa-check"></i> მხოლოდ ციფრები</small></div>
+          </section>
                 <div class="flat-bedroom-div">
                     <label [ngClass]="listingFormSubmitted()&& form.controls['bedrooms'].invalid?'invalid-description':''" for="beroom-amount" >საძინებლების რაოდენობა *</label>
                     <br>
