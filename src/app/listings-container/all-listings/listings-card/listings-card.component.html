@@ -1,6 +1,7 @@
-
-        
+  <div class="image-container">
+        <p>{{listing.is_rental===0?"იყიდება":"ქირავდება"}}</p>
         <img [src]="listing.image" [alt]="listing.city.name" class="listing-image">
+       </div>
             <div class="main-container">
         <h1>{{listing.price}} ₾</h1> 
         <p>  <i class="fa-solid fa-location-pin"></i> {{listing.city.name}}, {{listing.address}}</p>

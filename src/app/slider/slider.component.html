@@ -1,5 +1,15 @@
-<article>
-    @for(item of sliderListings(); track item.id){
-        <app-listings-card (click)="handleClick(item.id)" [listing]="item"></app-listings-card>
-    }
-</article>
+<section class="slider">
+   <section class="slides">
+    <section class="slider-item" *ngFor="let item of sliderListings()" (click)="handleClick(item.id)" [ngStyle]=
+    "{ 
+    transform: 'translateX('+(-index * 315) + 'px)',
+    transition: 'transform 0.5s ease' 
+  }">
+        <app-listings-card [listing]="item" ></app-listings-card>
+    </section>
+   </section>
+   
+</section>
+<button class="prev" (click)="moveSlideLeft()">&#10094;</button>
+<button class="next" (click)="moveSlide()">&#10095;</button>
+

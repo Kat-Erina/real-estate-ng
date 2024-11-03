@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { CommonModule } from '@angular/common';
 import { map } from 'rxjs';
 import { ApiService } from '../core/api.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AgentModalComponent } from '../agent-modal/agent-modal.component';
 
 
@@ -31,7 +31,8 @@ agents=this.cityService.agents;
 form!:FormGroup;
 listingFormSubmitted=signal<boolean>(false);
 formInvalid=this.cityService.formInvalid;
-listingAdded=signal(false)
+listingAdded=signal(false);
+router=inject(Router)
 
 @ViewChild('fileInput') fileInput!:ElementRef;
 
@@ -179,6 +180,10 @@ if(this.form.valid && this.formInvalid()){
      this.destroyRef.onDestroy(()=>subscription.unsubscribe())
     
 }
+   }
+
+   navigate(){
+    this.router.navigate([""])
    }
    
   }

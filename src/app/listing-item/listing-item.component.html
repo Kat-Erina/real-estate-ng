@@ -1,0 +1,56 @@
+
+<section class="listing-item-section" *ngIf="!isDeleted()">
+   <a class="navigate" (click)="navigate()"> <i class="fa-solid fa-arrow-left"></i></a>
+    <section class="list-item">
+        <div class="image-container"> 
+            <p class="is-rental">{{item().is_rental===0?"იყიდება":"ქირავდება"}}</p>
+            <img [src]="item().image" [alt]="" class="list-item-img">
+        <p>გამოქვეყნების თარიღი {{day()}}/{{month()}}/{{year()}}</p></div>
+       
+            <div class="main-content">
+        <h1>{{item().price}} ₾</h1> 
+      
+    
+     <div>
+        <ul class="list">
+            <li><i class="fa-solid fa-location-pin"></i>{{item().city.name}}, {{item().address}}</li>
+            <li>
+                <i class="fa-solid fa-chart-area"></i>ფართი {{item().area}} მ2
+                
+               </li>
+            <li><i class="fa-solid fa-bed"></i>საძინებელი {{item().bedrooms}}</li>
+        <li><i class="fa-solid fa-location-crosshairs"></i>საფოსტო ინდექსი {{item().zip_code}}</li>
+        <li class="listing-description">{{item().description}}</li>
+        </ul>
+        </div>
+        <div>
+            <div class="listing-agent-container">
+                <div class="agent-description">
+                    <img class="agent-image" [src]="item().agent.avatar" [alt]="item().agent.name">
+                   <ul class="agent-name"><li class="name">{{item().agent.name}} {{item().agent.surname}}</li>
+                   <li></li>აგენტი</ul>
+                </div>
+                <div>
+                    <ul class="agent-contact-information">
+                        <li><i class="fa-regular fa-envelope"></i>{{item().agent.email}}</li>
+                    <li><i class="fa-solid fa-phone"></i> {{item().agent.phone}}</li>
+                    </ul>
+                </div>
+               
+            </div>
+            <button class="delete-listing-btn" (click)="openConfimDialog()">ლისტინგის წაშლა</button>
+        </div>
+        </div>
+    </section>
+    <hr>
+   <article  class="slider-container">
+    <p>მსგავსი ბინები</p>
+    <app-slider></app-slider>
+   </article>
+</section>
+
+
+ <section class="deleted-listing-container" *ngIf="isDeleted()"><p class="deleted-listing" >ლისტინგი წარმატებით წაიშალა  <i class="fa-regular fa-face-smile"></i></p>
+    <a class="navigate" (click)="navigate()"> <i class="fa-solid fa-arrow-left"></i> მთავარ გვერდზე დაბრუნება</a></section>
+    
+

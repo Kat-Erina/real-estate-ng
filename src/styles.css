@@ -2,22 +2,15 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* overflow: hidden; */
 }
 
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-  /* overflow: hidden; */
  }
 
-
-
    .region-form, .prices-form, .area-form, .bedroom-form{
-    
-    /* width: 75vw; */
    background-color: #ffffff;
-    
-    top:50px;
+     top:50px;
     z-index: 1;
     position: absolute;
     
@@ -34,7 +27,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 14px;
-    border:1px solid red
 }
 
 
@@ -81,13 +73,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     display: flex;
     flex-direction: row;
     margin-top: 24px;
-    border: 1px solid blue;
+    border: 1px solid #DBDBDB;
     
 }
 .price-option-first ul, .price-option-second ul, .area-option-first ul, .area-option-second ul{
     list-style: none;
-    
-   
 }
  
 .price-option-first ul li, .price-option-second ul li, .area-option-first ul li, .area-option-second ul li{
@@ -98,7 +88,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     }
 
 .price-option-first, .price-option-second, .area-option-first, .area-option-second{
-    border: 1px solid red;
     width: 50%;
 }
 .input-container{
@@ -205,14 +194,10 @@ border-radius: 10px;
  
   @media screen and (min-width:1600px){
     body{
-      /* width: 100%; */
-     
         display: grid;
-       place-items: center;
-      
-        background-color: #45A849;
-        margin: 0;
-        /* padding: 0; */
+    place-items: center;
+    
+      margin: 0;
     }
     }
 

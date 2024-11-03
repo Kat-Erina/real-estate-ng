@@ -111,4 +111,10 @@
     </form>
  
 </section>
-<section *ngIf="listingAdded()"><p>ლისტინგ წარმატებით დაემატა</p></section>
+
+
+<section class="listing-added-container" *ngIf="listingAdded()" >
+    <p>ლისტინგი წარმატებით დაემატა <i class="fa-solid fa-check"></i></p>
+    <a class="navigate" (click)="navigate()"> <i class="fa-solid fa-arrow-left"></i> მთავარ გვერდზე დაბრუნება</a>
+    
+</section>

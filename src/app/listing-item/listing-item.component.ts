@@ -1,18 +1,18 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { ApiService } from '../../../core/api.service';
+import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
+import { ApiService } from '../core/api.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../../core/confirm-dialog/confirm-dialog.component';
-import { MainService } from '../../../core/main-service.service';
+import { ConfirmDialogComponent } from '../core/confirm-dialog/confirm-dialog.component';
+import { MainService } from '../core/main-service.service';
 import { CommonModule } from '@angular/common';
-import { SliderComponent } from '../../../slider/slider.component';
-import { ReceivedListingObject, FetchedListingObject } from '../../../core/types';
-import { defaultReceivedObject } from '../../../core/types';
+import { SliderComponent } from '../slider/slider.component';
+import { ReceivedListingObject, FetchedListingObject, defaultReceivedObject } from '../core/types';
+
 
 @Component({
   selector: 'app-listing-item',
   standalone: true,
-  imports: [CommonModule, SliderComponent],
+  imports: [CommonModule, SliderComponent, RouterModule],
   templateUrl: './listing-item.component.html',
   styleUrl: './listing-item.component.css'
 })
@@ -29,12 +29,24 @@ deletedItemsArray=signal<string[]>([]);
 destroyRef=inject(DestroyRef);
 sliderListings=this.mainService.sliderListings;
 filteringListings=this.mainService.filteringListings;
+day=signal('');
+month=signal('');
+year=signal('');
+
 
 
 
 fetchData(name:string){
 let subscribion=this.apiService.fetchDataWithToken(name).subscribe({
   next:(response)=> {this.item.set(response);
+  console.log(this.item())
+const date = new Date(this.item().created_at);
+this.day.set(String(date.getUTCDate()).padStart(2, '0')); 
+this.month.set(String(date.getUTCMonth() + 1).padStart(2, '0'));
+this.year.set(String(date.getUTCFullYear()))
+
+
+
   },
    error:(error:Error)=>{console.log(error)}
 })
@@ -68,7 +80,7 @@ else  this.fetchData(`real-estates/${this.itemId()}`);
 
 openConfimDialog(){
  let dialog=this.dialog.open(ConfirmDialogComponent, {
-    height: '400px',
+    height: '100px',
     width: '600px',
        data:{question: 'გსურს წაშალო ლისტინგი?'}
 }, )
@@ -92,5 +104,9 @@ dialog.afterClosed().subscribe((result)=>{
 
   this.destroyRef.onDestroy(()=>{subscription.unsubscribe(), deletSubscription.unsubscribe()})
   }})
+}
+
+navigate(){
+  this.router.navigate(['']);
 }
 }

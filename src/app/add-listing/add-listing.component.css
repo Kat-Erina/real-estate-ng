@@ -98,6 +98,16 @@ small{
     margin-bottom: 0.6rem;
 }
 
+.listing-added-container {
+   padding-top: 2rem;
+    text-align: center;
+    
+}
+
+.fa-check{
+    color: rgb(55, 145, 83)
+}
+.navigate{font-size: 12px;}
 
 @media screen and (min-width:500px) {
     .region-select, .city-select, .address-input, .cost-input, .area-input, .bedrooms-input, .agent-select{
