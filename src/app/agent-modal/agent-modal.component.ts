@@ -31,7 +31,7 @@ ngOnInit(): void {
   this.form=new FormGroup({
   name:new FormControl('', {validators:[Validators.required, Validators.minLength(2), Validators.pattern('^(?:[ა-ჰ]+(?: [ა-ჰ]+)*|[a-zA-Z]+(?: [a-zA-Z]+)*|[ა-ჰa-zA-Z]+(?: [ა-ჰa-zA-Z]+)*)$')]}),
   surname:new FormControl('', {validators:[Validators.required, Validators.minLength(2), Validators.pattern('^(?:[ა-ჰ]+(?: [ა-ჰ]+)*|[a-zA-Z]+(?: [a-zA-Z]+)*|[ა-ჰa-zA-Z]+(?: [ა-ჰa-zA-Z]+)*)$')]}),
-  email: new FormControl(null,  {validators:[Validators.required, Validators.email, Validators.pattern('^[a-zA-Z]+@redberry\.ge$')]}),
+  email: new FormControl(null,  {validators:[Validators.required,Validators.pattern('^[^\\s]+@redberry\.ge$')]}),
   phone:new FormControl('', [ Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern('^5\\d*$')]),
   avatar:new FormControl('', Validators.required),
 })

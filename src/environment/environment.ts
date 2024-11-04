@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    MY_KEY: '9d66aefb-63d3-498c-8110-7941858ae78a'
+    MY_KEY: '9d686fb6-fd95-4485-b70d-d6b77501ab46'
   };
   

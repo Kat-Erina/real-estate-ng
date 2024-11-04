@@ -51,6 +51,8 @@ region_id:0
    
 
 ngOnInit(): void {
+  // localStorage.clear()
+
 let fetchedData=localStorage.getItem('listingInfo');
 this.cityService.previewListingPhoto.set(''),
 this.cityService.listingImageValidType.set(false)
@@ -67,15 +69,17 @@ price:[this.listingInfo.price, [Validators.required, Validators.pattern(/^[0-9]+
 area:[this.listingInfo.area, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
 bedrooms:[this.listingInfo.bedrooms, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
 description:[this.listingInfo.description, [Validators.required]],
-agent_id:[this.listingInfo.agent_id, Validators.required],
+agent_id:[this.listingInfo.agent_id===""?"":this.listingInfo.agent_id, Validators.required],
 is_rental:[this.listingInfo.is_rental, Validators.required],
 image:["", Validators.required],
 region_id:[this.listingInfo.region_id || '', Validators.required],
 })
  
 let  subscription=this.form.valueChanges.subscribe((value)=>{
-let updatedListingValues={...this.listingInfo, ...value};
+  if(value.agent_id!="add_new_agent"){
+    let updatedListingValues={...this.listingInfo, ...value};
 localStorage.setItem('listingInfo', JSON.stringify(updatedListingValues))
+  }
 } )
 
 let regionsSubscription=this.apiService.fetchData('regions').subscribe(
@@ -142,11 +146,12 @@ return this.agents();
 
 onAddAgent(e:Event){
 const targetValue=(e.target as HTMLSelectElement).value;
-if(targetValue===''){
+if(targetValue==='add_new_agent'){
   this.cityService.agentDialogOpen=true;
   this.openAgentModal()
 }
 }
+
 
 uploadListingPhoto(e:Event){ 
 this.fileInput.nativeElement.click()

@@ -94,7 +94,7 @@
                         <select class="agent-select" (change)="onAddAgent($event)" formControlName="agent_id" >
                          
                                 <option *ngFor="let agent of agentsArray" [value]="agent.id">{{agent.name}} {{agent.surname}}</option>
-                            <option   value="">Add a new Agent</option>
+                                                            <option   value="add_new_agent">Add a new Agent</option>
                         </select>
                     </div>
                 </div>
