@@ -1,6 +1,6 @@
 import { Component, inject, Input, signal } from '@angular/core';
 import { MainService } from '../core/main-service.service';
-import { ListingsCardComponent } from '../listings-container/all-listings/listings-card/listings-card.component';
+import { ListingsCardComponent } from '../shared/component/listings-card/listings-card.component';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReceivedListingObject } from '../core/types';

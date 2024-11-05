@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../core/api.service';
 import { MainService } from '../../core/main-service.service';
 import { CommonModule } from '@angular/common';
-import { ListingsCardComponent } from './listings-card/listings-card.component';
+import { ListingsCardComponent } from '../../shared/component/listings-card/listings-card.component';
 import { Router, RouterLink } from '@angular/router';
 import { ReceivedListingObject } from '../../core/types';
 
@@ -10,7 +10,7 @@ import { ReceivedListingObject } from '../../core/types';
 @Component({
   selector: 'app-all-listings',
   standalone: true,
-  imports: [CommonModule, ListingsCardComponent, RouterLink],
+  imports: [CommonModule,ListingsCardComponent,  RouterLink],
   templateUrl: './all-listings.component.html',
   styleUrl: './all-listings.component.css'
 })

@@ -5,7 +5,11 @@
 }
 
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+body { 
+ 
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+   overflow-x: hidden;
+   padding: 0.5rem;
  }
 
    .region-form, .prices-form, .area-form, .bedroom-form{
