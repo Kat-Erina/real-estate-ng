@@ -1,6 +1,6 @@
-import { Component, DestroyRef, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, HOST_TAG_NAME, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { MainService } from '../core/main-service.service'; 
-import { CityObject, ListingObject, RegionObject } from '../core/types';
+import { CityObject,    ExtendedAnimal,    ExtendedPerson,    ListingObject,  RegionObject } from '../core/types';
 import { Service } from '../core/services.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -48,10 +48,10 @@ is_rental:'0',
 image:'',
 region_id:0
     }
-   
+
 
 ngOnInit(): void {
-  // localStorage.clear()
+
 
 let fetchedData=localStorage.getItem('listingInfo');
 this.cityService.previewListingPhoto.set(''),

@@ -88,3 +88,20 @@ export interface FetchedListingObject extends ReceivedListingObject{
     description:'',
     agent:{avatar:'', email:'', id:0, name:'', phone:'', surname:''}
   };
+
+ export interface Person{
+  name:string
+ }
+
+ export interface Person{
+age:number
+ }
+
+
+export interface ExtendedPerson extends Person{
+name:string
+}
+
+export type Animal={name:string};
+
+export type ExtendedAnimal=Animal & {color: string}
